@@ -42,16 +42,16 @@ export function Header() {
                 className="object-contain transition-all duration-300"
               />
             </div>
-            <div className="hidden sm:flex flex-col">
+            <div className="flex flex-col min-w-0">
               <span
-                className={`font-bold text-lg leading-tight transition-all duration-300 ${
+                className={`font-bold text-base sm:text-lg leading-tight transition-all duration-300 truncate ${
                   isScrolled ? "text-[#0A1B34]" : "text-white"
                 } group-hover:text-[#2CA8FF]`}
               >
                 Sistemas del Norte
               </span>
               <span
-                className={`text-xs font-medium transition-all duration-300 ${
+                className={`text-[10px] sm:text-xs font-medium transition-all duration-300 truncate ${
                   isScrolled ? "text-[#6B7280]" : "text-gray-200"
                 }`}
               >
