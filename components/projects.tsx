@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Eye, Sparkles } from "lucide-react"
+import Image from "next/image"
 
 const projects = [
   {
@@ -132,9 +133,11 @@ export function Projects() {
               >
                 {/* Imagen */}
                 <div className="relative h-48 overflow-hidden bg-gray-200">
-                  <img
+                  <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">

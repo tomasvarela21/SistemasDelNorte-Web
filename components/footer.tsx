@@ -80,12 +80,12 @@ export function Footer() {
             <h4 className="font-bold mb-4 text-[#2CA8FF]">Contacto</h4>
             <div className="space-y-3 text-sm text-gray-400">
               <a
-                href="https://wa.me/543816832948"
+                href="https://wa.me/543812165087"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-[#2CA8FF] transition-colors"
               >
-                <Phone size={16} /> +54 381 683 2948
+                <Phone size={16} /> +54 381 216 5087
               </a>
               <a
                 href="mailto:sistemasdelnorte25@gmail.com"

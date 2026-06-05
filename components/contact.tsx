@@ -12,7 +12,7 @@ export function Contact() {
     email: "",
     phone: "",
     projectType: "Sistema administrativo",
-    budget: "$500 - $5,000", // Cambié el presupuesto por defecto a la opción nueva
+    budget: "$500 - $5,000",
     message: "",
   })
 
@@ -25,7 +25,21 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Aquí iría la lógica de envío del formulario
+
+    const message = [
+      "Hola Sistemas del Norte, quiero hacer una consulta desde el formulario web:",
+      "",
+      `Nombre: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Teléfono: ${formData.phone || "No informado"}`,
+      `Tipo de proyecto: ${formData.projectType}`,
+      `Presupuesto estimado: ${formData.budget}`,
+      "",
+      `Mensaje: ${formData.message}`,
+    ].join("\n")
+
+    window.open(`https://wa.me/543812165087?text=${encodeURIComponent(message)}`, "_blank")
+
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
@@ -34,7 +48,7 @@ export function Contact() {
         email: "",
         phone: "",
         projectType: "Sistema administrativo",
-        budget: "$500 - $5,000", // Actualicé el reset del formulario con el nuevo valor
+        budget: "$500 - $5,000",
         message: "",
       })
     }, 3000)
@@ -187,7 +201,7 @@ export function Contact() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/543816832948?text=Hola%20Sistemas%20del%20Norte%2C%20quiero%20información%20sobre%20un%20sistema%20para%20mi%20negocio"
+                href="https://wa.me/543812165087?text=Hola%20Sistemas%20del%20Norte%2C%20quiero%20información%20sobre%20un%20sistema%20para%20mi%20negocio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-white/10 hover:bg-white/20 rounded-lg transition-all mb-4 group"
@@ -195,7 +209,7 @@ export function Contact() {
                 <MessageCircle className="w-8 h-8 text-[#2CA8FF] flex-shrink-0" />
                 <div className="flex-1">
                   <p className="font-bold group-hover:text-[#2CA8FF] transition-colors">WhatsApp</p>
-                  <p className="text-sm text-gray-300">+54 381 683 2948</p>
+                  <p className="text-sm text-gray-300">+54 381 216 5087</p>
                 </div>
                 <ArrowRight size={20} className="opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>

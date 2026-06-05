@@ -69,7 +69,7 @@ export function Hero() {
             {/* CTAs */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/543816832948?text=Hola%20Sistemas%20del%20Norte%2C%20quiero%20información%20sobre%20un%20sistema%20para%20mi%20negocio"
+                href="https://wa.me/543812165087?text=Hola%20Sistemas%20del%20Norte%2C%20quiero%20información%20sobre%20un%20sistema%20para%20mi%20negocio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-[#2CA8FF] to-[#1e88d4] text-white rounded-lg font-bold hover:shadow-2xl hover:shadow-[#2CA8FF]/50 transition-all hover:scale-105 flex items-center justify-center gap-2 group"
