@@ -76,7 +76,10 @@ export function Projects() {
   const filtered = selectedCategory === "Todos" ? projects : projects.filter((p) => p.category === selectedCategory)
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-white to-blue-50">
+    <section id="projects" className="py-20 bg-background relative overflow-hidden">
+      {/* Luces de fondo ambientadas */}
+      <div className="absolute top-10 left-10 w-[400px] h-[400px] bg-primary rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,11 +89,11 @@ export function Projects() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-[#2CA8FF]" />
-            <span className="text-sm font-semibold text-[#2CA8FF]">Portfolio</span>
+            <Sparkles className="w-5 h-5 text-accent animate-pulse" />
+            <span className="text-sm font-semibold text-accent tracking-wider font-display">Portfolio</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0A1B34] mb-4">Proyectos Realizados</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Proyectos Realizados</h2>
+          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
             Soluciones que transformaron negocios reales. Cada proyecto es una historia de éxito.
           </p>
         </motion.div>
@@ -107,10 +110,10 @@ export function Projects() {
               onClick={() => setSelectedCategory(cat)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full font-medium transition-all ${
+              className={`px-6 py-2 rounded-full font-medium transition-all border ${
                 selectedCategory === cat
-                  ? "bg-gradient-to-r from-[#2CA8FF] to-[#1e88d4] text-white shadow-lg shadow-[#2CA8FF]/50 scale-105"
-                  : "bg-white text-[#0A1B34] hover:border-[#2CA8FF] border border-gray-200 hover:shadow-md"
+                  ? "bg-gradient-to-r from-primary to-accent text-background border-transparent shadow-lg shadow-primary/20 scale-105"
+                  : "bg-zinc-900/60 text-zinc-300 border-zinc-800 hover:border-accent hover:text-accent hover:bg-zinc-800"
               }`}
             >
               {cat}
@@ -129,39 +132,39 @@ export function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[#2CA8FF] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="group glass border-gradient-glow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative"
               >
                 {/* Imagen */}
-                <div className="relative h-48 overflow-hidden bg-gray-200">
+                <div className="relative h-48 overflow-hidden bg-zinc-900 border-b border-white/5">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <span className="text-white text-sm font-medium">{project.category}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end p-4">
+                    <span className="text-accent text-xs font-bold uppercase tracking-widest">{project.category}</span>
                   </div>
                 </div>
 
                 {/* Contenido */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-[#0A1B34] mb-2">{project.name}</h3>
+                <div className="p-6 relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-3 font-display">{project.name}</h3>
 
-                  <div className="mb-4 space-y-2">
-                    <p className="text-sm text-gray-600">
-                      <strong>Problema:</strong> {project.problem}
+                  <div className="mb-6 space-y-3">
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                      <strong className="text-white font-medium">Problema:</strong> {project.problem}
                     </p>
-                    <p className="text-sm text-[#0A1B34]">
-                      <strong>Solución:</strong> {project.solution}
+                    <p className="text-sm text-zinc-300 leading-relaxed">
+                      <strong className="text-accent font-medium">Solución:</strong> {project.solution}
                     </p>
                   </div>
 
                   {/* Tags de tecnología */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.techs.map((tech, i) => (
-                      <span key={i} className="text-xs px-2 py-1 bg-[#2CA8FF]/10 text-[#2CA8FF] rounded-md font-medium">
+                      <span key={i} className="text-xs px-2.5 py-1 bg-primary/10 border border-primary/20 text-accent rounded-md font-medium">
                         {tech}
                       </span>
                     ))}
@@ -171,9 +174,9 @@ export function Projects() {
                   <div className="flex gap-3">
                     <a
                       href={project.demoLink}
-                      className="flex-1 px-4 py-2 bg-gradient-to-r from-[#2CA8FF] to-[#1e88d4] text-white rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2 group/btn"
+                      className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-background rounded-lg font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2 group/btn text-sm"
                     >
-                      <Eye size={16} /> Ver Demo
+                      <Eye size={16} className="text-background" /> Ver Demo
                     </a>
                   </div>
                 </div>

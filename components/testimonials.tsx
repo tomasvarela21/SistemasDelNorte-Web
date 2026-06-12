@@ -36,7 +36,10 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-20 bg-[#F3F4F6]">
+    <section className="py-20 bg-background relative overflow-hidden">
+      {/* Glow de fondo */}
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,8 +48,8 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0A1B34] mb-4">Testimonios de Clientes</h2>
-          <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Testimonios de Clientes</h2>
+          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
             Lo que dicen nuestros clientes sobre trabajar con nosotros
           </p>
         </motion.div>
@@ -59,17 +62,17 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl border border-gray-200 hover:border-[#2CA8FF] hover:shadow-lg transition-all"
+              className="glass p-8 rounded-2xl hover:border-accent/20 hover:shadow-2xl transition-all group"
             >
               <div className="flex items-center gap-2 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="#FFC107" className="text-[#FFC107]" />
+                  <Star key={i} size={16} fill="oklch(0.73 0.17 195)" className="text-accent" />
                 ))}
               </div>
-              <p className="text-[#0A1B34] mb-4 italic text-lg leading-relaxed">{`"${testimonial.testimonial}"`}</p>
+              <p className="text-zinc-300 mb-6 italic text-lg leading-relaxed">{`"${testimonial.testimonial}"`}</p>
               <div>
-                <p className="font-bold text-[#0A1B34]">{testimonial.name}</p>
-                <p className="text-sm text-[#6B7280]">{testimonial.business}</p>
+                <p className="font-bold text-white font-display">{testimonial.name}</p>
+                <p className="text-sm text-accent font-medium">{testimonial.business}</p>
               </div>
             </motion.div>
           ))}

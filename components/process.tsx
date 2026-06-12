@@ -35,7 +35,10 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="py-20 bg-gradient-to-b from-white to-[#F3F4F6]">
+    <section id="process" className="py-20 bg-background relative overflow-hidden">
+      {/* Glow de fondo */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,13 +47,13 @@ export function Process() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0A1B34] mb-4">Cómo Trabajamos</h2>
-          <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Cómo Trabajamos</h2>
+          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
             Un proceso claro, transparente y enfocado en resultados
           </p>
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 max-w-4xl mx-auto">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -58,28 +61,28 @@ export function Process() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 bg-white/60 sm:bg-transparent rounded-xl p-4 sm:p-0 shadow-sm sm:shadow-none"
+              className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 glass border border-white/5 rounded-2xl p-6 hover:bg-white/5 hover:border-white/10 transition-all duration-300 group"
             >
               {/* Timeline */}
               <div className="flex items-center sm:flex-col sm:items-center gap-4 sm:gap-2">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0A1B34] to-[#2CA8FF] flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-lg"
+                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-background font-black text-lg flex-shrink-0 shadow-lg shadow-primary/20"
                 >
                   {step.number}
                 </motion.div>
                 {index < steps.length - 1 && (
                   <>
-                    <div className="h-1 w-12 bg-gradient-to-r from-[#2CA8FF] to-[#2CA8FF]/30 rounded-full sm:hidden"></div>
-                    <div className="hidden sm:block w-1 h-16 bg-gradient-to-b from-[#2CA8FF] to-[#2CA8FF]/30 mt-2"></div>
+                    <div className="h-1 w-12 bg-gradient-to-r from-accent to-primary/20 rounded-full sm:hidden"></div>
+                    <div className="hidden sm:block w-0.5 h-16 bg-gradient-to-b from-accent to-primary/20 mt-2"></div>
                   </>
                 )}
               </div>
 
               {/* Content */}
-              <div className="pb-4 sm:pb-8 pt-1 flex-1">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#0A1B34] mb-2">{step.title}</h3>
-                <p className="text-[#6B7280] text-base sm:text-lg leading-relaxed">{step.description}</p>
+              <div className="pt-1 flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors font-display">{step.title}</h3>
+                <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">{step.description}</p>
               </div>
             </motion.div>
           ))}

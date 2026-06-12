@@ -1,10 +1,18 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-sans" 
+})
+
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  variable: "--font-display" 
+})
 
 export const metadata: Metadata = {
   title: "Sistemas del Norte - Soluciones Digitales",
@@ -36,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.className} font-sans antialiased`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-background text-foreground`}>
         {children}
         <Analytics />
       </body>

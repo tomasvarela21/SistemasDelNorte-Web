@@ -28,7 +28,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white/80 glass shadow-2xl" : "bg-transparent"
+        isScrolled ? "bg-background/70 glass shadow-xl" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,24 +36,20 @@ export function Header() {
           <Link href="#" className="flex items-center gap-3 group">
             <div className="relative w-16 h-16">
               <Image
-                src={isScrolled ? "/images/logo-dark.png" : "/images/logo-white.png"}
+                src="/images/logo-white.png"
                 alt="Sistemas del Norte"
                 fill
-                className="object-contain transition-all duration-300"
+                className="object-contain transition-all duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex flex-col min-w-0">
               <span
-                className={`font-bold text-base sm:text-lg leading-tight transition-all duration-300 truncate ${
-                  isScrolled ? "text-[#0A1B34]" : "text-white"
-                } group-hover:text-[#2CA8FF]`}
+                className="font-bold text-base sm:text-lg leading-tight transition-all duration-300 truncate text-white group-hover:text-accent font-display"
               >
                 Sistemas del Norte
               </span>
               <span
-                className={`text-[10px] sm:text-xs font-medium transition-all duration-300 truncate ${
-                  isScrolled ? "text-[#6B7280]" : "text-gray-200"
-                }`}
+                className="text-[10px] sm:text-xs font-medium transition-all duration-300 truncate text-zinc-400"
               >
                 Soluciones Digitales
               </span>
@@ -66,9 +62,7 @@ export function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-medium transition-all hover:text-[#2CA8FF] ${
-                  isScrolled ? "text-[#0A1B34]" : "text-white"
-                }`}
+                className="text-sm font-medium transition-all text-zinc-300 hover:text-accent hover:translate-y-[-1px]"
               >
                 {item.label}
               </a>
@@ -79,7 +73,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <a
               href="#contact"
-              className="bg-gradient-to-r from-[#2CA8FF] to-[#1e88d4] text-white rounded-lg font-bold hover:shadow-lg hover:shadow-[#2CA8FF]/40 transition-all duration-300 hover:scale-105 mx-0 py-2 leading-6 tracking-tighter px-1 shadow-md"
+              className="bg-gradient-to-r from-primary to-accent text-background rounded-lg font-bold hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105 py-2 leading-6 px-4 shadow-md text-sm"
             >
               Agendar Consulta
             </a>
@@ -88,7 +82,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${isScrolled ? "text-[#0A1B34]" : "text-white"}`}
+            className="md:hidden p-2 rounded-lg transition-colors text-white"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -96,13 +90,13 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200">
+          <div className="md:hidden glass-dark border border-white/5 rounded-xl mt-2 overflow-hidden shadow-2xl animate-fade-in-up">
             <nav className="flex flex-col gap-4 p-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-sm font-medium text-[#0A1B34] hover:text-[#2CA8FF] transition-colors"
+                  className="text-sm font-medium text-zinc-200 hover:text-accent transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -110,7 +104,7 @@ export function Header() {
               ))}
               <a
                 href="#contact"
-                className="px-4 py-2 bg-gradient-to-r from-[#2CA8FF] to-[#1e88d4] text-white rounded-lg font-medium hover:shadow-lg transition-all text-center"
+                className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-background rounded-lg font-medium hover:shadow-lg transition-all text-center"
                 onClick={() => setIsOpen(false)}
               >
                 Agendar Consulta
