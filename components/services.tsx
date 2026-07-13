@@ -74,10 +74,10 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 font-display">
             Lo que hacemos
           </h2>
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Soluciones integrales diseñadas para ordenar, automatizar y escalar tu negocio
           </p>
         </motion.div>
@@ -108,10 +108,10 @@ export function Services() {
                   <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-primary/10">
                     <Icon className="w-7 h-7 text-accent" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-accent transition-colors font-display">
+                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors font-display">
                     {service.title}
                   </h3>
-                  <p className="text-zinc-400 mb-6 text-base leading-relaxed">{service.description}</p>
+                  <p className="text-muted-foreground mb-6 text-base leading-relaxed">{service.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {service.tags.map((tag, i) => (
                       <span

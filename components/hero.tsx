@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowRight, CheckCircle2, Sparkles, Plus, RotateCw, DollarSign, Package, BarChart3 } from "lucide-react"
 
 export function Hero() {
@@ -58,7 +58,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-background bg-grid-pattern text-white pt-32 pb-20 overflow-hidden"
+      className="relative min-h-screen bg-background bg-grid-pattern text-foreground pt-32 pb-20 overflow-hidden"
     >
       {/* Luces de fondo ambientadas */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -78,12 +78,12 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-balance bg-gradient-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent font-display"
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-balance bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent font-display dark:from-white dark:via-zinc-100 dark:to-accent"
             >
               Soluciones digitales que ordenan y escalan tu negocio
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-xl text-zinc-400 mb-8 text-balance leading-relaxed">
+            <motion.p variants={itemVariants} className="text-xl text-muted-foreground mb-8 text-balance leading-relaxed">
               Sistemas personalizados, plataformas web y automatización administrativa para PyMEs y comercios que
               quieren crecer sin complicaciones.
             </motion.p>
@@ -97,7 +97,7 @@ export function Hero() {
               ].map((benefit, i) => (
                 <motion.div key={i} variants={itemVariants} className="flex items-start gap-3">
                   <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-zinc-300 font-medium">{benefit}</span>
+                  <span className="text-lg text-secondary-foreground font-medium">{benefit}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -108,14 +108,14 @@ export function Hero() {
                 href="https://wa.me/543812165087?text=Hola%20Sistemas%20del%20Norte%2C%20quiero%20información%20sobre%20un%20sistema%20para%20mi%20negocio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-background rounded-lg font-bold hover:shadow-2xl hover:shadow-primary/30 transition-all hover:scale-105 flex items-center justify-center gap-2 group shadow-lg"
+                className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground dark:text-background rounded-lg font-bold hover:shadow-2xl hover:shadow-primary/30 transition-all hover:scale-105 flex items-center justify-center gap-2 group shadow-lg"
               >
                 Hablamos por WhatsApp
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform text-background" />
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform text-primary-foreground dark:text-background" />
               </a>
               <a
                 href="#projects"
-                className="px-8 py-4 border border-zinc-700 hover:border-accent text-zinc-300 hover:text-accent rounded-lg font-bold hover:bg-accent/5 transition-all hover:scale-105 flex items-center justify-center gap-2 backdrop-blur-sm group"
+                className="px-8 py-4 border border-border hover:border-accent text-secondary-foreground hover:text-accent rounded-lg font-bold hover:bg-accent/5 transition-all hover:scale-105 flex items-center justify-center gap-2 backdrop-blur-sm group dark:border-zinc-700 dark:text-zinc-300"
               >
                 Ver Proyectos
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -135,23 +135,23 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl opacity-60 blur-3xl pointer-events-none"></div>
 
               {/* Mockup dashboard interactivo */}
-              <div className="relative glass-dark rounded-2xl p-5 shadow-2xl border border-white/10 overflow-hidden">
+              <div className="relative glass-dark rounded-2xl p-5 shadow-2xl border border-border/80 overflow-hidden dark:border-white/10">
                 {/* Cabecera del simulador */}
-                <div className="flex justify-between items-center pb-4 mb-4 border-b border-white/5">
+                <div className="flex justify-between items-center pb-4 mb-4 border-b border-border/70 dark:border-white/5">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                   </div>
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-500">Live Demo - Sistema PyME</span>
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Live Demo - Sistema PyME</span>
                 </div>
 
                 {/* Pestañas del Dashboard */}
-                <div className="flex gap-2 mb-4 bg-zinc-950/60 p-1 rounded-lg border border-white/5">
+                <div className="flex gap-2 mb-4 bg-secondary/70 p-1 rounded-lg border border-border/70 dark:bg-zinc-950/60 dark:border-white/5">
                   <button
                     onClick={() => setActiveTab("sales")}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-xs font-semibold transition-all ${
-                      activeTab === "sales" ? "bg-primary text-white shadow-md" : "text-zinc-400 hover:text-zinc-200"
+                      activeTab === "sales" ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <DollarSign size={14} /> Ventas
@@ -159,7 +159,7 @@ export function Hero() {
                   <button
                     onClick={() => setActiveTab("stock")}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-xs font-semibold transition-all ${
-                      activeTab === "stock" ? "bg-primary text-white shadow-md" : "text-zinc-400 hover:text-zinc-200"
+                      activeTab === "stock" ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <Package size={14} /> Inventario
@@ -167,34 +167,34 @@ export function Hero() {
                   <button
                     onClick={() => setActiveTab("metrics")}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-xs font-semibold transition-all ${
-                      activeTab === "metrics" ? "bg-primary text-white shadow-md" : "text-zinc-400 hover:text-zinc-200"
+                      activeTab === "metrics" ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <BarChart3 size={14} /> Métricas
                   </button>
                 </div>
 
-                {/* Contenido de Pestañas con AnimatePresence */}
+                {/* Contenido de Pestañas */}
                 <div className="min-h-[160px]">
-                  <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="space-y-4"
+                  >
                     {activeTab === "sales" && (
-                      <motion.div
-                        key="sales"
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        className="space-y-4"
-                      >
+                      <>
                         <div className="grid grid-cols-2 gap-3">
-                          <div className="bg-zinc-950/40 p-3 rounded-lg border border-white/5">
-                            <span className="text-[10px] text-zinc-500 font-bold uppercase block mb-1">Total Ingresos</span>
+                          <div className="bg-card/75 p-3 rounded-lg border border-border/70 dark:bg-zinc-950/40 dark:border-white/5">
+                            <span className="text-[10px] text-muted-foreground/80 font-bold uppercase block mb-1">Total Ingresos</span>
                             <motion.span className="text-xl font-bold text-accent">
-                              ${revenue.toLocaleString()} USD
+                              ${revenue.toLocaleString("es-AR")} USD
                             </motion.span>
                           </div>
-                          <div className="bg-zinc-950/40 p-3 rounded-lg border border-white/5">
-                            <span className="text-[10px] text-zinc-500 font-bold uppercase block mb-1">Ventas Totales</span>
-                            <motion.span className="text-xl font-bold text-white">
+                          <div className="bg-card/75 p-3 rounded-lg border border-border/70 dark:bg-zinc-950/40 dark:border-white/5">
+                            <span className="text-[10px] text-muted-foreground/80 font-bold uppercase block mb-1">Ventas Totales</span>
+                            <motion.span className="text-xl font-bold text-foreground">
                               {salesCount}
                             </motion.span>
                           </div>
@@ -202,18 +202,18 @@ export function Hero() {
 
                         {/* Recent Transactions List */}
                         <div className="space-y-2">
-                          <span className="text-[10px] text-zinc-500 font-bold uppercase block">Últimos Pedidos</span>
+                          <span className="text-[10px] text-muted-foreground/80 font-bold uppercase block">Últimos Pedidos</span>
                           <div className="space-y-1.5 max-h-[85px] overflow-hidden">
                             {recentSales.map((sale) => (
                               <motion.div
                                 key={sale.id}
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="flex justify-between items-center text-xs bg-white/5 p-2 rounded border border-white/5"
+                                className="flex justify-between items-center text-xs bg-secondary/60 p-2 rounded border border-border/70 dark:bg-white/5 dark:border-white/5"
                               >
-                                <span className="text-zinc-300 font-medium">{sale.name}</span>
+                                <span className="text-secondary-foreground font-medium">{sale.name}</span>
                                 <div className="flex items-center gap-3">
-                                  <span className="text-zinc-500 text-[10px]">{sale.time}</span>
+                                  <span className="text-muted-foreground/80 text-[10px]">{sale.time}</span>
                                   <span className="text-accent font-bold">+${sale.amount}</span>
                                 </div>
                               </motion.div>
@@ -224,29 +224,23 @@ export function Hero() {
                         <button
                           onClick={handleRegisterSale}
                           type="button"
-                          className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-background rounded-lg font-bold text-xs shadow-lg shadow-primary/10 hover:scale-[1.01] active:scale-[0.99] transition-all"
+                          className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground dark:text-background rounded-lg font-bold text-xs shadow-lg shadow-primary/10 hover:scale-[1.01] active:scale-[0.99] transition-all"
                         >
-                          <Plus size={14} className="text-background" /> Simular Registro de Venta
+                          <Plus size={14} className="text-primary-foreground dark:text-background" /> Simular Registro de Venta
                         </button>
-                      </motion.div>
+                      </>
                     )}
 
                     {activeTab === "stock" && (
-                      <motion.div
-                        key="stock"
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        className="space-y-4"
-                      >
-                        <div className="bg-zinc-950/40 p-4 rounded-lg border border-white/5">
+                      <>
+                        <div className="bg-card/75 p-4 rounded-lg border border-border/70 dark:bg-zinc-950/40 dark:border-white/5">
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-[10px] text-zinc-500 font-bold uppercase">Nivel de Stock</span>
+                            <span className="text-[10px] text-muted-foreground/80 font-bold uppercase">Nivel de Stock</span>
                             <span className={`text-xs font-bold ${stockCount < 100 ? "text-red-400" : "text-emerald-400"}`}>
                               {stockCount} Unidades
                             </span>
                           </div>
-                          <div className="w-full h-2.5 bg-zinc-900 rounded-full overflow-hidden border border-white/5">
+                          <div className="w-full h-2.5 bg-secondary rounded-full overflow-hidden border border-border/70 dark:bg-zinc-900 dark:border-white/5">
                             <motion.div
                               className="h-full bg-gradient-to-r from-primary to-accent"
                               initial={{ width: 0 }}
@@ -254,7 +248,7 @@ export function Hero() {
                               transition={{ duration: 0.5 }}
                             />
                           </div>
-                          <span className="text-[9px] text-zinc-500 mt-2 block">Capacidad máxima: 300 unidades.</span>
+                          <span className="text-[9px] text-muted-foreground/80 mt-2 block">Capacidad máxima: 300 unidades.</span>
                         </div>
 
                         {stockCount < 150 && (
@@ -270,19 +264,13 @@ export function Hero() {
                         >
                           <RotateCw size={14} /> Abastecer Almacén (+50 uds)
                         </button>
-                      </motion.div>
+                      </>
                     )}
 
                     {activeTab === "metrics" && (
-                      <motion.div
-                        key="metrics"
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        className="space-y-4"
-                      >
-                        <div className="bg-zinc-950/40 p-4 rounded-lg border border-white/5 space-y-3">
-                          <span className="text-[10px] text-zinc-500 font-bold uppercase block">Rendimiento Semanal</span>
+                      <>
+                        <div className="bg-card/75 p-4 rounded-lg border border-border/70 space-y-3 dark:bg-zinc-950/40 dark:border-white/5">
+                          <span className="text-[10px] text-muted-foreground/80 font-bold uppercase block">Rendimiento Semanal</span>
                           {/* Mini gráfico de barras CSS */}
                           <div className="flex items-end justify-between h-20 pt-2 px-1">
                             {[45, 60, 50, 75, 90, 80, 95].map((val, i) => (
@@ -293,20 +281,20 @@ export function Hero() {
                                   animate={{ height: `${val}%` }}
                                   transition={{ duration: 0.8, delay: i * 0.05 }}
                                 />
-                                <span className="text-[8px] text-zinc-500">
+                                <span className="text-[8px] text-muted-foreground/80">
                                   {["L", "M", "M", "J", "V", "S", "D"][i]}
                                 </span>
                               </div>
                             ))}
                           </div>
                         </div>
-                        <div className="flex justify-between items-center text-[10px] text-zinc-500 bg-white/5 p-2 rounded">
-                          <span className="font-semibold text-zinc-400">Eficiencia Administrativa</span>
+                        <div className="flex justify-between items-center text-[10px] text-muted-foreground/80 bg-secondary/60 p-2 rounded dark:bg-white/5">
+                          <span className="font-semibold text-muted-foreground">Eficiencia Administrativa</span>
                           <span className="text-accent font-bold">+124%</span>
                         </div>
-                      </motion.div>
+                      </>
                     )}
-                  </AnimatePresence>
+                  </motion.div>
                 </div>
               </div>
             </div>

@@ -92,8 +92,8 @@ export function Projects() {
             <Sparkles className="w-5 h-5 text-accent animate-pulse" />
             <span className="text-sm font-semibold text-accent tracking-wider font-display">Portfolio</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Proyectos Realizados</h2>
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 font-display">Proyectos Realizados</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Soluciones que transformaron negocios reales. Cada proyecto es una historia de éxito.
           </p>
         </motion.div>
@@ -112,8 +112,8 @@ export function Projects() {
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-2 rounded-full font-medium transition-all border ${
                 selectedCategory === cat
-                  ? "bg-gradient-to-r from-primary to-accent text-background border-transparent shadow-lg shadow-primary/20 scale-105"
-                  : "bg-zinc-900/60 text-zinc-300 border-zinc-800 hover:border-accent hover:text-accent hover:bg-zinc-800"
+                  ? "bg-gradient-to-r from-primary to-accent text-primary-foreground dark:text-background border-transparent shadow-lg shadow-primary/20 scale-105"
+                  : "bg-card/75 text-secondary-foreground border-border hover:border-accent hover:text-accent hover:bg-secondary dark:bg-zinc-900/60 dark:text-zinc-300 dark:border-zinc-800 dark:hover:bg-zinc-800"
               }`}
             >
               {cat}
@@ -123,7 +123,7 @@ export function Projects() {
 
         {/* Grid de Proyectos */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filtered.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -135,7 +135,7 @@ export function Projects() {
                 className="group glass border-gradient-glow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative"
               >
                 {/* Imagen */}
-                <div className="relative h-48 overflow-hidden bg-zinc-900 border-b border-white/5">
+                <div className="relative h-48 overflow-hidden bg-secondary border-b border-border/70 dark:bg-zinc-900 dark:border-white/5">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.name}
@@ -143,20 +143,20 @@ export function Projects() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300 flex items-end p-4">
                     <span className="text-accent text-xs font-bold uppercase tracking-widest">{project.category}</span>
                   </div>
                 </div>
 
                 {/* Contenido */}
                 <div className="p-6 relative z-10">
-                  <h3 className="text-xl font-bold text-white mb-3 font-display">{project.name}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3 font-display">{project.name}</h3>
 
                   <div className="mb-6 space-y-3">
-                    <p className="text-sm text-zinc-400 leading-relaxed">
-                      <strong className="text-white font-medium">Problema:</strong> {project.problem}
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      <strong className="text-foreground font-medium">Problema:</strong> {project.problem}
                     </p>
-                    <p className="text-sm text-zinc-300 leading-relaxed">
+                    <p className="text-sm text-secondary-foreground leading-relaxed">
                       <strong className="text-accent font-medium">Solución:</strong> {project.solution}
                     </p>
                   </div>
@@ -174,9 +174,9 @@ export function Projects() {
                   <div className="flex gap-3">
                     <a
                       href={project.demoLink}
-                      className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-background rounded-lg font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2 group/btn text-sm"
+                      className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-primary-foreground dark:text-background rounded-lg font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2 group/btn text-sm"
                     >
-                      <Eye size={16} className="text-background" /> Ver Demo
+                      <Eye size={16} className="text-primary-foreground dark:text-background" /> Ver Demo
                     </a>
                   </div>
                 </div>

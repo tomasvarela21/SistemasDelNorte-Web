@@ -48,8 +48,8 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Testimonios de Clientes</h2>
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 font-display">Testimonios de Clientes</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Lo que dicen nuestros clientes sobre trabajar con nosotros
           </p>
         </motion.div>
@@ -62,16 +62,16 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass p-8 rounded-2xl hover:border-accent/20 hover:shadow-2xl transition-all group"
+              className="glass border border-border/70 p-8 rounded-2xl hover:border-accent/30 hover:shadow-2xl transition-all group"
             >
               <div className="flex items-center gap-2 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} size={16} fill="oklch(0.73 0.17 195)" className="text-accent" />
                 ))}
               </div>
-              <p className="text-zinc-300 mb-6 italic text-lg leading-relaxed">{`"${testimonial.testimonial}"`}</p>
+              <p className="text-secondary-foreground mb-6 italic text-lg leading-relaxed">{`"${testimonial.testimonial}"`}</p>
               <div>
-                <p className="font-bold text-white font-display">{testimonial.name}</p>
+                <p className="font-bold text-foreground font-display">{testimonial.name}</p>
                 <p className="text-sm text-accent font-medium">{testimonial.business}</p>
               </div>
             </motion.div>

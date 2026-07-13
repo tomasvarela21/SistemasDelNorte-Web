@@ -47,8 +47,8 @@ export function Process() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 font-display">Cómo Trabajamos</h2>
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 font-display">Cómo Trabajamos</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Un proceso claro, transparente y enfocado en resultados
           </p>
         </motion.div>
@@ -61,13 +61,13 @@ export function Process() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 glass border border-white/5 rounded-2xl p-6 hover:bg-white/5 hover:border-white/10 transition-all duration-300 group"
+              className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 glass border border-border/70 rounded-2xl p-6 hover:bg-secondary/60 hover:border-accent/25 dark:border-white/5 dark:hover:bg-white/5 dark:hover:border-white/10 transition-all duration-300 group"
             >
               {/* Timeline */}
               <div className="flex items-center sm:flex-col sm:items-center gap-4 sm:gap-2">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-background font-black text-lg flex-shrink-0 shadow-lg shadow-primary/20"
+                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground dark:text-background font-black text-lg flex-shrink-0 shadow-lg shadow-primary/20"
                 >
                   {step.number}
                 </motion.div>
@@ -81,8 +81,8 @@ export function Process() {
 
               {/* Content */}
               <div className="pt-1 flex-1">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors font-display">{step.title}</h3>
-                <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">{step.description}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors font-display">{step.title}</h3>
+                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">{step.description}</p>
               </div>
             </motion.div>
           ))}

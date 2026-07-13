@@ -26,7 +26,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="py-20 bg-background text-white relative overflow-hidden">
+    <section className="py-20 bg-background text-foreground relative overflow-hidden">
       {/* Glow de fondo */}
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
 
@@ -39,7 +39,7 @@ export function Benefits() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 font-display">Por qué elegirnos</h2>
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Tecnología moderna pensada para escalar tu negocio, con un enfoque 100% en PyMEs y comercios.
           </p>
         </motion.div>
@@ -54,16 +54,16 @@ export function Benefits() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center p-6 glass border border-white/5 rounded-2xl hover:border-accent/20 transition-all duration-300"
+                className="text-center p-6 glass border border-border/70 rounded-2xl hover:border-accent/30 transition-all duration-300"
               >
                 <div className="flex justify-center mb-4">
                   <div className="p-4 bg-primary/10 rounded-full border border-primary/20">
                     <Icon className="w-10 h-10 text-accent" />
                   </div>
                 </div>
-                <h3 className="text-4xl font-extrabold mb-2 text-white font-display">{benefit.stat}</h3>
-                <p className="text-lg font-semibold mb-2 text-zinc-200">{benefit.label}</p>
-                <p className="text-zinc-400">{benefit.description}</p>
+                <h3 className="text-4xl font-extrabold mb-2 text-foreground font-display">{benefit.stat}</h3>
+                <p className="text-lg font-semibold mb-2 text-secondary-foreground">{benefit.label}</p>
+                <p className="text-muted-foreground">{benefit.description}</p>
               </motion.div>
             )
           })}
@@ -74,24 +74,24 @@ export function Benefits() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="glass border border-white/5 rounded-2xl p-8"
+          className="glass border border-border/70 rounded-2xl p-8"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div>
               <p className="text-xl font-bold text-accent mb-2 font-display">✓ Tecnología</p>
-              <p className="text-zinc-400">Herramientas modernas y escalables</p>
+              <p className="text-muted-foreground">Herramientas modernas y escalables</p>
             </div>
             <div>
               <p className="text-xl font-bold text-accent mb-2 font-display">✓ Adaptación</p>
-              <p className="text-zinc-400">Sistemas al flujo real de tu negocio</p>
+              <p className="text-muted-foreground">Sistemas al flujo real de tu negocio</p>
             </div>
             <div>
               <p className="text-xl font-bold text-accent mb-2 font-display">✓ Acompañamiento</p>
-              <p className="text-zinc-400">Soporte constante en la implementación</p>
+              <p className="text-muted-foreground">Soporte constante en la implementación</p>
             </div>
             <div>
               <p className="text-xl font-bold text-accent mb-2 font-display">✓ Enfoque PyME</p>
-              <p className="text-zinc-400">No usamos soluciones genéricas</p>
+              <p className="text-muted-foreground">No usamos soluciones genéricas</p>
             </div>
           </div>
         </motion.div>
