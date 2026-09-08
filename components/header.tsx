@@ -40,6 +40,7 @@ export function Header() {
                 src="/images/isotipo-sistemas-del-norte.png"
                 alt="Sistemas del Norte"
                 fill
+                priority
                 sizes="64px"
                 className="object-contain transition-all duration-300 group-hover:scale-105 dark:hidden"
               />
@@ -47,6 +48,7 @@ export function Header() {
                 src="/images/isotipo-sistemas-del-norte-white.png"
                 alt="Sistemas del Norte"
                 fill
+                priority
                 sizes="64px"
                 className="hidden object-contain transition-all duration-300 group-hover:scale-105 dark:block"
               />
