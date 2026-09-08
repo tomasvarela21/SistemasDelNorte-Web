@@ -14,8 +14,20 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 relative flex-shrink-0">
-                <Image src="/images/logo-dark.png" alt="Sistemas del Norte" fill sizes="40px" className="object-contain dark:hidden" />
-                <Image src="/images/logo-white.png" alt="Sistemas del Norte" fill sizes="40px" className="hidden object-contain dark:block" />
+                <Image
+                  src="/images/isotipo-sistemas-del-norte.png"
+                  alt="Sistemas del Norte"
+                  fill
+                  sizes="40px"
+                  className="object-contain dark:hidden"
+                />
+                <Image
+                  src="/images/isotipo-sistemas-del-norte-white.png"
+                  alt="Sistemas del Norte"
+                  fill
+                  sizes="40px"
+                  className="hidden object-contain dark:block"
+                />
               </div>
               <span className="font-bold font-display">Sistemas del Norte</span>
             </div>

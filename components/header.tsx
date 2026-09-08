@@ -37,14 +37,14 @@ export function Header() {
           <Link href="#" className="flex items-center gap-3 group">
             <div className="relative w-16 h-16">
               <Image
-                src="/images/logo-dark.png"
+                src="/images/isotipo-sistemas-del-norte.png"
                 alt="Sistemas del Norte"
                 fill
                 sizes="64px"
                 className="object-contain transition-all duration-300 group-hover:scale-105 dark:hidden"
               />
               <Image
-                src="/images/logo-white.png"
+                src="/images/isotipo-sistemas-del-norte-white.png"
                 alt="Sistemas del Norte"
                 fill
                 sizes="64px"
