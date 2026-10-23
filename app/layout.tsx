@@ -6,15 +6,14 @@ import "./globals.css"
 
 // Fuentes OFL autohospedadas (fontsource 5.3.0, subset latin con ñ y tildes)
 const bricolage = localFont({
-  src: "./fonts/bricolage-grotesque-latin-standard-normal.woff2",
+  src: "./fonts/bricolage-grotesque-latin-opsz-normal.woff2",
   variable: "--font-bricolage",
   weight: "200 800",
   display: "swap",
-  declarations: [{ prop: "font-stretch", value: "75% 100%" }],
   preload: true,
 })
 const inter = localFont({
-  src: "./fonts/inter-latin-standard-normal.woff2",
+  src: "./fonts/inter-latin-wght-normal.woff2",
   variable: "--font-inter",
   weight: "100 900",
   display: "swap",
@@ -54,7 +53,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es-AR" className={`${bricolage.variable} ${inter.variable} ${martian.variable}`}>
       <body>
         {children}
-        <Analytics />
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   )

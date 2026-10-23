@@ -2,6 +2,8 @@ import { BotonPildora } from "@/components/ui/boton"
 import { Icono, Sticker, type IconoNombre } from "@/components/ui/grafica"
 import { Isotipo } from "@/components/brand/marca"
 import { casos, dia, proceso, rubros, servicios, waLink } from "@/lib/contenido"
+import { CasosFila } from "@/components/landing/casos-fila"
+import { Resaltador } from "@/components/landing/resaltador"
 
 /* ---------- Marquee de rubros (estático en Fase 2) ---------- */
 export function Rubros() {
@@ -21,21 +23,28 @@ export function Rubros() {
 }
 
 /* ---------- Un día de tu negocio ---------- */
+const fondosDia = ["#fffdf7", "var(--marca-color-resaltador-suave)", "var(--marca-color-papel-2)", "var(--marca-color-tinta)"]
 export function DiaDelNegocio() {
   return (
     <section id="dia" className="dia py-[var(--marca-seccion)]" aria-labelledby="dia-titulo">
-      <div className="contenedor grid gap-12">
-        <div className="grid max-w-[44rem] gap-5">
-          <h2 id="dia-titulo" className="text-[length:var(--marca-fs-h2)]">Un día de tu negocio, sin perseguir mensajes.</h2>
-          <p className="text-[length:var(--marca-fs-lead)] text-texto-2">
+      <div className="dia-escenario relative">
+        <div className="dia-fondos" aria-hidden="true">
+          {fondosDia.map((c, i) => (
+            <span key={i} className="dia-fondo" style={{ background: c }} />
+          ))}
+        </div>
+        <div className="dia-pista contenedor relative grid gap-12">
+        <div className="dia-intro grid content-center gap-5">
+          <h2 id="dia-titulo" className="max-w-[18ch] text-[length:var(--marca-fs-h2)]">Un día de tu negocio, sin perseguir mensajes.</h2>
+          <p className="max-w-[44rem] text-[length:var(--marca-fs-lead)] text-texto-2">
             Así cambia una jornada en una estética cuando los turnos dejan de vivir en el chat.
           </p>
         </div>
-        <ol className="dia-pista grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <ol className="dia-lista grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {dia.map((m, i) => (
             <li
               key={m.hora}
-              className={`dia-card grid content-start gap-5 rounded-[var(--marca-radio)] p-6 ${i === 3 ? "superficie-tinta" : i === 2 ? "bg-papel-2" : i === 1 ? "bg-resaltador-suave" : "bg-[#fffdf7] ring-1 ring-inset ring-[var(--marca-color-borde)]"}`}
+              className={`dia-card grid content-start gap-5 rounded-[var(--marca-radio)] p-6 ${i === 3 ? "superficie-tinta ring-1 ring-inset ring-[var(--marca-color-borde)]" : i === 2 ? "bg-papel-2 ring-1 ring-inset ring-[var(--marca-color-borde)]" : i === 1 ? "bg-resaltador-suave" : "bg-[#fffdf7] ring-1 ring-inset ring-[var(--marca-color-borde)]"}`}
             >
               <div className="flex items-center justify-between">
                 <span className="cifra text-[length:var(--marca-fs-h3)] leading-none">{m.hora}</span>
@@ -55,19 +64,24 @@ export function DiaDelNegocio() {
             </li>
           ))}
         </ol>
+        </div>
       </div>
     </section>
   )
 }
 
 /* ---------- Statement ---------- */
+const DECLARACION = "Si una herramienta gratuita le alcanza a tu negocio, te lo digo. Lo que armo es para que dejes de depender del WhatsApp, y queda a tu nombre."
 export function Declaracion() {
   return (
     <section className="declaracion superficie-tinta py-[var(--marca-seccion)]" aria-label="Cómo pienso el trabajo">
       <div className="contenedor grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-        <p className="declaracion-texto max-w-[22ch] font-display text-[length:var(--marca-fs-h2)] font-bold leading-[1.08] tracking-[-0.03em]">
-          Si una herramienta gratuita le alcanza a tu negocio, te lo digo. Lo que armo es para que dejes de depender del WhatsApp, y queda a tu nombre.
-        </p>
+        <div>
+          <p className="solo-lectores">{DECLARACION}</p>
+          <p aria-hidden="true" className="declaracion-texto max-w-[22ch] font-display text-[length:var(--marca-fs-h2)] font-bold leading-[1.08] tracking-[-0.03em]">
+            {DECLARACION}
+          </p>
+        </div>
         <Sticker texto="lo tuyo es tuyo · lo tuyo es tuyo · " variante="resaltador" className="w-32 shrink-0 sm:w-40" />
       </div>
     </section>
@@ -113,6 +127,7 @@ export function Proceso() {
     <section id="proceso" className="renglones bg-papel-2 py-[var(--marca-seccion)]" aria-labelledby="proceso-titulo">
       <div className="contenedor grid gap-12">
         <h2 id="proceso-titulo" className="max-w-[18ch] text-[length:var(--marca-fs-h2)]">Cómo trabajo, en cuatro pasos.</h2>
+        <Resaltador />
         <ol className="grid gap-8 md:grid-cols-4">
           {proceso.map((p, i) => (
             <li key={p.paso} className="grid content-start gap-3 border-t-2 border-tinta pt-5">
@@ -148,7 +163,7 @@ export function Casos() {
           </div>
         </div>
       </div>
-      <ul className="casos-fila mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[max(var(--marca-gutter),calc((100vw-var(--marca-ancho))/2+var(--marca-gutter)))] pb-6 [scrollbar-width:thin]" tabIndex={0} aria-label="Casos, desplazable horizontalmente">
+      <CasosFila>
         {casos.map((c) => (
           <li key={c.titulo} className="caso-card grid w-[min(20rem,82vw)] shrink-0 snap-start content-between gap-8 rounded-[var(--marca-radio)] bg-papel-2 p-6">
             <div className="grid gap-3">
@@ -161,7 +176,7 @@ export function Casos() {
             </div>
             {c.cifra ? (
               <p className="grid">
-                <span className="cifra text-[2.25rem] leading-none">{c.cifra.valor}</span>
+                <span className="cifra text-[2.25rem] leading-none" data-contar={c.cifra.valor}>{c.cifra.valor}</span>
                 <span className="text-[0.85rem] text-texto-2">{c.cifra.etiqueta}</span>
               </p>
             ) : (
@@ -169,15 +184,15 @@ export function Casos() {
             )}
           </li>
         ))}
-      </ul>
-    </section>
+      </CasosFila>
+   </section>
   )
 }
 
 /* ---------- Quién está detrás ---------- */
 export function QuienSoy() {
   return (
-    <section className="py-[var(--marca-seccion)] pt-0" aria-labelledby="quien-titulo">
+    <section className="quien py-[var(--marca-seccion)] pt-0" aria-labelledby="quien-titulo">
       <div className="contenedor grid gap-8 rounded-[calc(var(--marca-radio)*1.5)] bg-resaltador-suave p-[clamp(1.5rem,1rem+3vw,4rem)] md:grid-cols-[auto_1fr] md:items-center">
         <div className="grid size-28 place-items-center rounded-full bg-tinta text-papel md:size-36">
           <Isotipo className="h-14 w-auto md:h-16" />

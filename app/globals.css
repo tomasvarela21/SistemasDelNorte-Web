@@ -202,9 +202,7 @@
 }
 
 /* ---------- Sello giratorio (solo transform) ---------- */
-.sello-anillo { animation: girar 24s linear infinite; }
-@keyframes girar { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .sello-anillo { animation: none; } }
+/* El sello gira con el scroll (lo maneja el orquestador); sin JS queda quieto. */
 
 /* ---------- Navegación ---------- */
 .nav-link { transition: background-color var(--marca-dur-ui) ease; }
@@ -229,3 +227,91 @@ html { scroll-padding-top: 5rem; }
 .campo::placeholder { color: var(--marca-color-gris-claro); }
 .campo:focus-visible { outline: 3px solid var(--marca-color-resaltador); outline-offset: 2px; border-color: transparent; }
 select.campo { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--marca-color-papel) 50%), linear-gradient(135deg, var(--marca-color-papel) 50%, transparent 50%); background-position: calc(100% - 22px) 52%, calc(100% - 16px) 52%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2.5rem; }
+
+/* =========================================================
+   Fase 3 · movimiento. Solo transform y opacity.
+   La clase .mov la pone el orquestador cuando GSAP y Lenis cargaron.
+   ========================================================= */
+html.lenis, html.lenis body { height: auto; }
+html { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.lenis-smooth { scroll-behavior: auto !important; }
+.lenis-stopped { overflow: clip; }
+
+/* Titular: entra desde una máscara, solo CSS */
+.linea-mascara { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.linea-mascara > span { display: inline-block; animation: subir 700ms var(--marca-ease-out) both; }
+.linea-mascara:nth-child(2) > span { animation-delay: 80ms; }
+.linea-mascara:nth-child(3) > span { animation-delay: 160ms; }
+@keyframes subir { from { transform: translateY(105%); } to { transform: none; } }
+
+@media (min-width: 900px) {
+  .portada { min-height: 100svh; }
+}
+@media (max-width: 899.98px) {
+  .mov .hero-pista { height: 165svh; }
+  .mov .hero-sticky { position: sticky; top: 72px; }
+}
+.hero-canvas { will-change: opacity; }
+
+/* Marquee */
+.mov .marquee-pista { will-change: transform; }
+
+/* Un día: horizontal en desktop */
+.dia-fondos { display: none; }
+.dia--horizontal { height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.dia:has(.dia--horizontal) { padding-block: 0; }
+.dia--horizontal .dia-fondos { display: block; position: absolute; inset: 0; }
+.dia--horizontal .dia-fondo { position: absolute; inset: 0; opacity: 0; }
+.dia--horizontal .dia-fondo:first-child { opacity: 1; }
+.dia--horizontal .dia-pista {
+  display: flex; flex-wrap: nowrap; align-items: center; gap: 1.5rem; width: max-content; max-width: none; margin: 0;
+  padding-inline: max(var(--marca-gutter), calc((100vw - var(--marca-ancho)) / 2 + var(--marca-gutter)));
+  will-change: transform;
+}
+.dia--horizontal .dia-intro { width: min(30rem, 34vw); flex-shrink: 0; margin-right: 4vw; }
+.dia--horizontal .dia-lista { display: flex; gap: 1.5rem; }
+.dia--horizontal .dia-card { width: min(30rem, 34vw); min-height: 26rem; }
+
+/* Mascota */
+.mascota-marcador { display: none; }
+.mov .mascota-marcador { display: block; will-change: transform; }
+
+/* Casos: flechas y hover que eleva la card */
+.flecha-fila {
+  display: grid; place-items: center; width: var(--marca-toque); height: var(--marca-toque);
+  border-radius: 999px; background: var(--marca-color-tinta); color: var(--marca-color-papel);
+  transition: transform var(--marca-dur-press) var(--marca-ease-out), opacity var(--marca-dur-ui) ease;
+}
+.flecha-fila:active:not(:disabled) { transform: scale(0.97); }
+.flecha-fila:disabled { opacity: 0.35; cursor: default; }
+.caso-card { position: relative; transition: transform var(--marca-dur-ui) var(--marca-ease-out); }
+.caso-card::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: var(--marca-sombra-2);
+  opacity: 0; transition: opacity var(--marca-dur-ui) ease; pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .caso-card:hover { transform: translateY(-6px); }
+  .caso-card:hover::after { opacity: 1; }
+}
+
+/* Bottom sheet del menú mobile */
+.hoja-dialogo {
+  position: fixed; inset: auto 0 0 0; margin: 0; width: 100%; max-width: 100%; max-height: 90svh;
+  padding: 0; border: 0; background: transparent; overflow: visible; overscroll-behavior: contain;
+}
+.hoja-dialogo::backdrop { background: rgb(20 24 27 / 0.45); }
+.hoja-inferior {
+  background: var(--marca-color-papel); color: var(--marca-color-tinta);
+  border-radius: 24px 24px 0 0; padding: 0 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform var(--marca-dur-salida) var(--marca-ease-out);
+}
+.hoja-inferior.abierta { transform: translateY(0); transition: transform 260ms var(--marca-ease-drawer); }
+.hoja-inferior.arrastrando { transition: none; }
+
+/* Mobile: secciones de abajo con content-visibility, reservando su alto */
+@media (max-width: 899.98px) {
+  #servicios { content-visibility: auto; contain-intrinsic-size: auto 1500px; }
+  .quien { content-visibility: auto; contain-intrinsic-size: auto 520px; }
+  #contacto { content-visibility: auto; contain-intrinsic-size: auto 980px; }
+}

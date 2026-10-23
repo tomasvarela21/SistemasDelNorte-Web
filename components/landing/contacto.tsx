@@ -18,6 +18,8 @@ export function Contacto() {
     const necesidad = String(f.get("necesidad") || "").trim()
     if (!nombre || !necesidad) {
       setError("Completá tu nombre y contame qué necesitás para poder responderte.")
+      const primero = e.currentTarget.querySelector<HTMLElement>(!nombre ? "#nombre" : "#necesidad")
+      primero?.focus()
       return
     }
     setError(null)
@@ -43,7 +45,7 @@ export function Contacto() {
           </div>
           <div className="grid gap-2">
             <label htmlFor="rubro" className="font-medium">Rubro</label>
-            <select id="rubro" name="rubro" className="campo" defaultValue="">
+            <select id="rubro" name="rubro" className="campo" defaultValue="" autoComplete="off">
               <option value="">Elegí una opción</option>
               {opcionesRubro.map((o) => (
                 <option key={o}>{o}</option>
@@ -52,10 +54,10 @@ export function Contacto() {
           </div>
           <div className="grid gap-2">
             <label htmlFor="necesidad" className="font-medium">¿Qué te gustaría ordenar?</label>
-            <textarea id="necesidad" name="necesidad" rows={4} required className="campo resize-y" placeholder="Ej.: hoy doy los turnos por WhatsApp y no tengo web." />
+            <textarea id="necesidad" name="necesidad" rows={4} required autoComplete="off" className="campo resize-y" placeholder="Ej.: hoy doy los turnos por WhatsApp y no tengo web…" />
           </div>
           {error ? (
-            <p id="form-error" role="alert" className="text-resaltador">
+            <p id="form-error" role="alert" aria-live="polite" className="text-resaltador">
               {error}
             </p>
           ) : null}

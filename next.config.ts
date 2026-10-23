@@ -1,5 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  // CSS en línea: evita la hoja que bloquea el render en el primer viewport
+  experimental: { inlineCss: true },
+}
 
-export default nextConfig;
+export default nextConfig

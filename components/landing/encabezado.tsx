@@ -1,5 +1,6 @@
 import { Wordmark } from "@/components/brand/marca"
 import { waLink } from "@/lib/contenido"
+import { MenuMovil } from "@/components/landing/menu-movil"
 
 const links = [
   ["Servicios", "#servicios"],
@@ -29,14 +30,17 @@ export function Encabezado() {
             ))}
           </ul>
         </nav>
+        <div className="flex items-center gap-2">
+        <MenuMovil />
         <a
           href={waLink("Hola Tomás, quiero consultarte por mi negocio.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center rounded-full bg-tinta px-5 text-[0.95rem] font-semibold text-papel transition-transform duration-150 ease-[var(--marca-ease-out)] active:scale-[0.97]"
+          className="inline-flex min-h-[44px] items-center rounded-full bg-tinta px-5 text-[0.95rem] font-semibold text-papel transition-[transform,background-color] duration-150 ease-[var(--marca-ease-out)] active:scale-[0.97] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-tinta-2"
         >
           Escribime
         </a>
+        </div>
       </div>
     </header>
   )
