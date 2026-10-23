@@ -1,100 +1,249 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Eye, Sparkles } from "lucide-react"
-import Image from "next/image"
+import { AnimatePresence, motion } from "framer-motion"
+import {
+  BarChart3,
+  ClipboardList,
+  Eye,
+  FileBarChart,
+  Globe,
+  PackageCheck,
+  Smartphone,
+  Sparkles,
+  Store,
+} from "lucide-react"
+import { ProjectDemoModal, type DemoType, type ProjectCase } from "@/components/project-demos"
 
-const projects = [
+const projects: ProjectCase[] = [
   {
     id: 1,
-    name: "Sistema Administrativo - Comercio Electrónico",
-    category: "Sistemas administrativos",
-    problem: "Gestión manual de pedidos, inventario desorganizado, sin reportes de ventas.",
-    solution: "Sistema integrado que automatiza pedidos, controla stock en tiempo real y genera reportes diarios.",
-    techs: ["Next.js", "React", "Node.js", "PostgreSQL", "Tailwind"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1560264357-8d9766d54748?w=500&h=300&fit=crop",
+    name: "Panel de Ventas e Inventario",
+    client: "NorteStock Mayorista",
+    industry: "Distribuidora de insumos",
+    tagline: "Control de caja, pedidos y reposición para un mayorista que vende por mostrador y WhatsApp.",
+    category: "Ventas",
+    problem: "Ventas, stock y caja se actualizan tarde porque dependen de planillas o registros manuales.",
+    solution: "Un panel operativo registra ventas, descuenta stock y deja alertas visibles para decidir rápido.",
+    techs: ["Dashboard", "Stock", "Caja", "Alertas"],
+    demoType: "sales",
+    metrics: ["Stock vivo", "Caja diaria", "Alertas"],
+    previewStats: [
+      { label: "Ventas", value: "128" },
+      { label: "Stock", value: "94%" },
+      { label: "Caja", value: "$1.8M" },
+    ],
+    palette: {
+      primary: "#0f766e",
+      secondary: "#2563eb",
+      surface: "#dff7f2",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero una demo de gestión de ventas e inventario para mi negocio.",
   },
   {
     id: 2,
-    name: "E-commerce Inteligente",
+    name: "Tienda Online Inteligente",
+    client: "Aura Boutique",
+    industry: "Indumentaria y accesorios",
+    tagline: "Experiencia de compra con promociones, carrito claro y pedido listo para cobrar.",
     category: "E-commerce",
-    problem: "Necesidad de vender online sin invertir en plataforma cara ni complicada.",
-    solution: "Catálogo digital con carrito de compras, pagos integrados y gestión de inventario automática.",
-    techs: ["Next.js", "Stripe", "Firebase", "React"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&h=300&fit=crop",
+    problem: "El negocio necesita vender online sin depender de catálogos manuales ni pedidos desordenados.",
+    solution: "Una tienda simple permite armar carrito, aplicar promociones y confirmar pedidos desde un mismo flujo.",
+    techs: ["Carrito", "Pagos", "Promos", "Pedidos"],
+    demoType: "ecommerce",
+    metrics: ["Carrito", "Descuentos", "Pedidos"],
+    previewStats: [
+      { label: "Ticket", value: "$68K" },
+      { label: "Conv.", value: "4.8%" },
+      { label: "Pedidos", value: "32" },
+    ],
+    palette: {
+      primary: "#be185d",
+      secondary: "#f97316",
+      surface: "#fff1f2",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero conversar sobre un e-commerce inteligente para mi negocio.",
   },
   {
     id: 3,
     name: "Catálogo Digital Interactivo",
-    category: "Catálogos digitales",
-    problem: "Catálogo en PDF que no atrae a clientes ni permite buscar fácilmente.",
-    solution: "Catálogo web moderno, responsive, con búsqueda avanzada y filtros inteligentes.",
-    techs: ["React", "Tailwind", "Framer Motion", "TypeScript"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop",
+    client: "Casa Andina Deco",
+    industry: "Decoración y hogar",
+    tagline: "Catálogo consultable para que el cliente filtre, compare y arme una solicitud comercial.",
+    category: "Catálogos",
+    problem: "El catálogo en PDF no permite buscar, filtrar ni convertir interés en consultas comerciales.",
+    solution: "Un catálogo web filtra productos y arma consultas listas para enviar al equipo de ventas.",
+    techs: ["Búsqueda", "Filtros", "Consulta", "WhatsApp"],
+    demoType: "catalog",
+    metrics: ["Filtros", "Selección", "Consulta"],
+    previewStats: [
+      { label: "Items", value: "240" },
+      { label: "Rubros", value: "12" },
+      { label: "Leads", value: "+38%" },
+    ],
+    palette: {
+      primary: "#7c3aed",
+      secondary: "#0891b2",
+      surface: "#f5f3ff",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero un catálogo digital interactivo para mostrar mis productos.",
   },
   {
     id: 4,
-    name: "Plataforma de Gestión Interna",
-    category: "Apps web",
-    problem: "Múltiples herramientas desconectadas, información dispersa, sin control central.",
-    solution: "Plataforma unificada con acceso a datos en tiempo real desde cualquier dispositivo.",
-    techs: ["Next.js", "PostgreSQL", "Redux", "AWS"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop",
+    name: "Operaciones Internas",
+    client: "Clínica San Miguel",
+    industry: "Servicios profesionales",
+    tagline: "Tablero de tareas, responsables y prioridades para equipos que coordinan muchas solicitudes.",
+    category: "Gestión",
+    problem: "Las tareas se pierden entre chats, planillas y conversaciones sin responsables claros.",
+    solution: "Un tablero interno ordena estados, responsables y prioridades para que el equipo avance coordinado.",
+    techs: ["Tareas", "Roles", "Estados", "Prioridad"],
+    demoType: "workflow",
+    metrics: ["Avance", "Responsables", "Prioridad"],
+    previewStats: [
+      { label: "SLA", value: "92%" },
+      { label: "Tareas", value: "46" },
+      { label: "Equipo", value: "8" },
+    ],
+    palette: {
+      primary: "#1d4ed8",
+      secondary: "#16a34a",
+      surface: "#eff6ff",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero ordenar la gestión interna de mi equipo con una plataforma web.",
   },
   {
     id: 5,
-    name: "Automatización de Reportes",
+    name: "Reportes Ejecutivos Automáticos",
+    client: "Ruta 9 Logística",
+    industry: "Logística y distribución",
+    tagline: "Resumen ejecutivo por período con indicadores operativos listos para dirección.",
     category: "Automatización",
-    problem: "Reportes manuales que toman horas, propensos a errores.",
-    solution: "Sistema automatizado que genera reportes diarios, semanales y mensuales.",
-    techs: ["Node.js", "Firebase", "Cron Jobs", "SendGrid"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+    problem: "Los reportes se preparan a mano, llegan tarde y suelen tener errores de carga o consolidación.",
+    solution: "Un generador automático resume ventas, operaciones y alertas por período con envío simulado.",
+    techs: ["Reportes", "Automatización", "KPIs", "Email"],
+    demoType: "reports",
+    metrics: ["KPIs", "Períodos", "Envíos"],
+    previewStats: [
+      { label: "Ahorro", value: "9h" },
+      { label: "KPIs", value: "14" },
+      { label: "Errores", value: "-81%" },
+    ],
+    palette: {
+      primary: "#b45309",
+      secondary: "#dc2626",
+      surface: "#fffbeb",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero automatizar reportes para ahorrar tiempo administrativo.",
   },
   {
     id: 6,
-    name: "App Móvil de Gestión",
-    category: "Apps web",
-    problem: "Equipo en campo sin acceso a información de la empresa.",
-    solution: "App web progresiva con acceso offline y sincronización automática.",
-    techs: ["React Native", "PWA", "IndexedDB"],
-    demoLink: "#",
-    image: "https://images.unsplash.com/photo-1512941691920-25bef266d0a0?w=500&h=300&fit=crop",
+    name: "Equipo en Campo PWA",
+    client: "TecnoCampo Service",
+    industry: "Servicio técnico en ruta",
+    tagline: "Carga de visitas, evidencia y sincronización para técnicos que trabajan con conectividad variable.",
+    category: "Campo",
+    problem: "El equipo fuera de oficina carga visitas tarde y pierde información cuando no tiene conexión.",
+    solution: "Una app web progresiva guarda visitas temporalmente, trabaja offline y sincroniza al volver la señal.",
+    techs: ["PWA", "Offline", "Visitas", "Sync"],
+    demoType: "field",
+    metrics: ["Offline", "Cola", "Sincronización"],
+    previewStats: [
+      { label: "Visitas", value: "57" },
+      { label: "Offline", value: "OK" },
+      { label: "Sync", value: "2s" },
+    ],
+    palette: {
+      primary: "#365314",
+      secondary: "#0f766e",
+      surface: "#ecfccb",
+      text: "#ffffff",
+    },
+    whatsappMessage: "Hola Sistemas del Norte, quiero una app para mi equipo en campo con modo offline.",
   },
 ]
 
-const categories = ["Todos", ...Array.from(new Set(projects.map((p) => p.category)))]
+const iconByDemo: Record<DemoType, typeof BarChart3> = {
+  sales: PackageCheck,
+  ecommerce: Store,
+  catalog: Globe,
+  workflow: ClipboardList,
+  reports: FileBarChart,
+  field: Smartphone,
+}
+
+const categories = ["Todos", ...Array.from(new Set(projects.map((p) => p.category)))] as const
+
+function ProjectPreview({ project }: { project: ProjectCase }) {
+  const Icon = iconByDemo[project.demoType]
+  const previewStyle = {
+    background: `radial-gradient(circle at 15% 10%, ${project.palette.surface}, transparent 38%), linear-gradient(135deg, ${project.palette.primary}22, ${project.palette.secondary}28)`,
+  }
+
+  return (
+    <div className="relative h-56 overflow-hidden border-b border-border/70 dark:border-white/5" style={previewStyle}>
+      <div className="absolute inset-0 bg-grid-pattern opacity-60" />
+      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-lg border border-border/70 bg-card/80 shadow-lg backdrop-blur dark:border-white/10 dark:bg-zinc-950/60">
+        <Icon className="h-6 w-6" style={{ color: project.palette.primary }} />
+      </div>
+      <div className="absolute right-5 top-5 max-w-[160px] rounded-md border border-border/70 bg-card/85 px-3 py-2 text-right text-[10px] font-bold uppercase tracking-widest text-muted-foreground backdrop-blur dark:border-white/10 dark:bg-zinc-950/60">
+        {project.industry}
+      </div>
+
+      <div className="absolute left-5 right-5 top-24 rounded-xl border border-border/70 bg-card/80 p-4 shadow-xl backdrop-blur dark:border-white/10 dark:bg-zinc-950/55">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className="font-display text-sm font-extrabold text-foreground">{project.client}</span>
+          <span className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: project.palette.primary }}>
+            Live
+          </span>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {project.previewStats.map((stat) => (
+            <div key={stat.label} className="rounded-lg bg-secondary/70 px-2.5 py-2 dark:bg-white/5">
+              <span className="block text-[9px] font-bold uppercase tracking-widest text-muted-foreground">{stat.label}</span>
+              <span className="font-display block text-sm font-extrabold text-foreground tabular-nums">{stat.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <span className="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-widest" style={{ color: project.palette.primary }}>
+        {project.category}
+      </span>
+    </div>
+  )
+}
 
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("Todos")
+  const [activeProject, setActiveProject] = useState<ProjectCase | null>(null)
 
   const filtered = selectedCategory === "Todos" ? projects : projects.filter((p) => p.category === selectedCategory)
 
   return (
-    <section id="projects" className="py-20 bg-background relative overflow-hidden">
-      {/* Luces de fondo ambientadas */}
-      <div className="absolute top-10 left-10 w-[400px] h-[400px] bg-primary rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+    <section id="projects" className="relative overflow-hidden bg-background py-20">
+      <div className="absolute left-10 top-10 h-[400px] w-[400px] rounded-full bg-primary opacity-10 mix-blend-screen blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-accent animate-pulse" />
-            <span className="text-sm font-semibold text-accent tracking-wider font-display">Portfolio</span>
+          <div className="mb-4 flex items-center justify-center gap-2">
+            <Sparkles className="h-5 w-5 animate-pulse text-accent" />
+            <span className="font-display text-sm font-semibold tracking-wider text-accent">Soluciones en Acción</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 font-display">Proyectos Realizados</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Soluciones que transformaron negocios reales. Cada proyecto es una historia de éxito.
+          <h2 className="font-display mb-4 text-4xl font-extrabold text-foreground md:text-5xl">Demos Interactivas</h2>
+          <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
+            Tocá cada solución y probá una mini experiencia con datos simulados, métricas vivas y flujos reales de negocio.
           </p>
         </motion.div>
 
@@ -102,18 +251,19 @@ export function Projects() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="mb-12 flex flex-wrap justify-center gap-3"
         >
           {categories.map((cat) => (
             <motion.button
               key={cat}
+              type="button"
               onClick={() => setSelectedCategory(cat)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full font-medium transition-all border ${
+              className={`rounded-full border px-6 py-2 font-medium transition-all ${
                 selectedCategory === cat
-                  ? "bg-gradient-to-r from-primary to-accent text-primary-foreground dark:text-background border-transparent shadow-lg shadow-primary/20 scale-105"
-                  : "bg-card/75 text-secondary-foreground border-border hover:border-accent hover:text-accent hover:bg-secondary dark:bg-zinc-900/60 dark:text-zinc-300 dark:border-zinc-800 dark:hover:bg-zinc-800"
+                  ? "scale-105 border-transparent bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg shadow-primary/20 dark:text-background"
+                  : "border-border bg-card/75 text-secondary-foreground hover:border-accent hover:bg-secondary hover:text-accent dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300 dark:hover:bg-zinc-800"
               }`}
             >
               {cat}
@@ -121,70 +271,57 @@ export function Projects() {
           ))}
         </motion.div>
 
-        {/* Grid de Proyectos */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
+        <motion.div layout className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
             {filtered.map((project, index) => (
-              <motion.div
+              <motion.article
                 key={project.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group glass border-gradient-glow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative"
+                className="border-gradient-glow glass group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                {/* Imagen */}
-                <div className="relative h-48 overflow-hidden bg-secondary border-b border-border/70 dark:bg-zinc-900 dark:border-white/5">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.name}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300 flex items-end p-4">
-                    <span className="text-accent text-xs font-bold uppercase tracking-widest">{project.category}</span>
-                  </div>
-                </div>
+                <ProjectPreview project={project} />
 
-                {/* Contenido */}
-                <div className="p-6 relative z-10">
-                  <h3 className="text-xl font-bold text-foreground mb-3 font-display">{project.name}</h3>
+                <div className="relative z-10 p-6">
+                  <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-muted-foreground">{project.client}</span>
+                  <h3 className="font-display mb-3 text-xl font-bold text-foreground">{project.name}</h3>
 
                   <div className="mb-6 space-y-3">
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      <strong className="text-foreground font-medium">Problema:</strong> {project.problem}
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      <strong className="font-medium text-foreground">Problema:</strong> {project.problem}
                     </p>
-                    <p className="text-sm text-secondary-foreground leading-relaxed">
-                      <strong className="text-accent font-medium">Solución:</strong> {project.solution}
+                    <p className="text-sm leading-relaxed text-secondary-foreground">
+                      <strong className="font-medium text-accent">Solución:</strong> {project.solution}
                     </p>
                   </div>
 
-                  {/* Tags de tecnología */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.techs.map((tech, i) => (
-                      <span key={i} className="text-xs px-2.5 py-1 bg-primary/10 border border-primary/20 text-accent rounded-md font-medium">
+                  <div className="mb-6 flex flex-wrap gap-2">
+                    {project.techs.map((tech) => (
+                      <span key={tech} className="rounded-md border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-medium text-accent">
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Botones */}
-                  <div className="flex gap-3">
-                    <a
-                      href={project.demoLink}
-                      className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-primary-foreground dark:text-background rounded-lg font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2 group/btn text-sm"
-                    >
-                      <Eye size={16} className="text-primary-foreground dark:text-background" /> Ver Demo
-                    </a>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setActiveProject(project)}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2.5 text-sm font-bold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:shadow-primary/30 dark:text-background"
+                  >
+                    <Eye size={16} className="text-primary-foreground dark:text-background" />
+                    Ver Demo
+                  </button>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <ProjectDemoModal project={activeProject} onClose={() => setActiveProject(null)} />
     </section>
   )
 }
