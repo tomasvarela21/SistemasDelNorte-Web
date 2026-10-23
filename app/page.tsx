@@ -1,29 +1,15 @@
-"use client"
+import { Wordmark } from "@/components/brand/marca"
 
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { Services } from "@/components/services"
-import { Process } from "@/components/process"
-import { CalculatorSection } from "@/components/calculator"
-import { Projects } from "@/components/projects"
-import { Benefits } from "@/components/benefits"
-import { Testimonials } from "@/components/testimonials"
-import { Contact } from "@/components/contact"
-import { Footer } from "@/components/footer"
-
+// Fase 1: la landing se arma en la Fase 2. Mientras tanto, una portada mínima.
 export default function Home() {
   return (
-    <main className="w-full overflow-hidden">
-      <Header />
-      <Hero />
-      <Services />
-      <Process />
-      <CalculatorSection />
-      <Projects />
-      <Benefits />
-      <Testimonials />
-      <Contact />
-      <Footer />
+    <main className="renglones grid min-h-[100svh] place-items-center">
+      <h1 className="contenedor grid justify-items-center gap-6 text-center">
+        <Wordmark className="w-[min(24rem,72vw)] text-tinta" />
+        <span className="font-sans text-[length:var(--marca-fs-lead)] font-normal tracking-normal text-texto-2">
+          Sistemas a medida para ordenar ventas, stock y cobranzas.
+        </span>
+      </h1>
     </main>
   )
 }
