@@ -174,7 +174,7 @@
   padding-inline: var(--marca-gutter);
 }
 
-.solo-lectores {
+.solo-lectores:not(:focus) {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
@@ -205,3 +205,27 @@
 .sello-anillo { animation: girar 24s linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .sello-anillo { animation: none; } }
+
+/* ---------- Navegación ---------- */
+.nav-link { transition: background-color var(--marca-dur-ui) ease; }
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover { background: var(--marca-color-papel-2); }
+}
+html { scroll-padding-top: 5rem; }
+
+/* ---------- Formulario sobre tinta ---------- */
+.campo {
+  min-height: var(--marca-toque);
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--marca-color-borde);
+  background: var(--marca-color-tinta-2);
+  color: var(--marca-color-papel);
+  padding: 0.75rem 1rem;
+  font: inherit;
+  caret-color: var(--marca-color-resaltador);
+  transition: border-color var(--marca-dur-ui) ease;
+}
+.campo::placeholder { color: var(--marca-color-gris-claro); }
+.campo:focus-visible { outline: 3px solid var(--marca-color-resaltador); outline-offset: 2px; border-color: transparent; }
+select.campo { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--marca-color-papel) 50%), linear-gradient(135deg, var(--marca-color-papel) 50%, transparent 50%); background-position: calc(100% - 22px) 52%, calc(100% - 16px) 52%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2.5rem; }

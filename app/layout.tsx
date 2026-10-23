@@ -31,12 +31,12 @@ const martian = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://varelab.com"),
-  title: "VareLab · Sistemas a medida para ordenar ventas, stock y cobranzas",
+  title: "VareLab · Webs, turnos online y sistemas a medida en Tucumán",
   description:
-    "Sistemas de gestión a medida para negocios de Tucumán que hoy llevan las ventas, el stock y las cobranzas en cuadernos o planillas.",
+    "Tu negocio, ordenado y a mano. Webs, turnos online y sistemas a medida para negocios de Tucumán que hoy resuelven todo por WhatsApp.",
   openGraph: {
     title: "VareLab",
-    description: "Sistemas a medida para ordenar ventas, stock y cobranzas.",
+    description: "Tu negocio, ordenado y a mano.",
     type: "website",
     locale: "es_AR",
   },
