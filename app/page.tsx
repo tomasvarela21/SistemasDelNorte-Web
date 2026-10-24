@@ -1,29 +1,28 @@
-"use client"
+import { Encabezado } from "@/components/landing/encabezado"
+import { Portada } from "@/components/landing/portada"
+import { Rubros, DiaDelNegocio, Declaracion, Servicios, Proceso, Casos, QuienSoy } from "@/components/landing/secciones"
+import { Contacto, Pie } from "@/components/landing/contacto"
+import { Movimiento } from "@/components/landing/movimiento"
 
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { Services } from "@/components/services"
-import { Process } from "@/components/process"
-import { CalculatorSection } from "@/components/calculator"
-import { Projects } from "@/components/projects"
-import { Benefits } from "@/components/benefits"
-import { Testimonials } from "@/components/testimonials"
-import { Contact } from "@/components/contact"
-import { Footer } from "@/components/footer"
-
+// Secciones ordenadas por momentos del cliente: reconoce el problema → ve su día resuelto →
+// confía (honestidad) → entiende qué hago → cómo → pruebas → quién → contacto.
 export default function Home() {
   return (
-    <main className="w-full overflow-hidden">
-      <Header />
-      <Hero />
-      <Services />
-      <Process />
-      <CalculatorSection />
-      <Projects />
-      <Benefits />
-      <Testimonials />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <Encabezado />
+      <main id="contenido">
+        <Portada />
+        <Rubros />
+        <DiaDelNegocio />
+        <Declaracion />
+        <Servicios />
+        <Proceso />
+        <Casos />
+        <QuienSoy />
+        <Contacto />
+      </main>
+      <Pie />
+      <Movimiento />
+    </>
   )
 }

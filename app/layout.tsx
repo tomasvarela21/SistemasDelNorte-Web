@@ -1,55 +1,59 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Outfit } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
-import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans" 
+// Fuentes OFL autohospedadas (fontsource 5.3.0, subset latin con ñ y tildes)
+const bricolage = localFont({
+  src: "./fonts/bricolage-grotesque-latin-opsz-normal.woff2",
+  variable: "--font-bricolage",
+  weight: "200 800",
+  display: "swap",
+  preload: true,
 })
-
-const outfit = Outfit({ 
-  subsets: ["latin"],
-  variable: "--font-display" 
+const inter = localFont({
+  src: "./fonts/inter-latin-wght-normal.woff2",
+  variable: "--font-inter",
+  weight: "100 900",
+  display: "swap",
+  preload: true,
+})
+const martian = localFont({
+  src: "./fonts/martian-mono-latin-standard-normal.woff2",
+  variable: "--font-martian",
+  weight: "100 800",
+  display: "swap",
+  preload: false,
+  declarations: [{ prop: "font-stretch", value: "75% 112.5%" }],
 })
 
 export const metadata: Metadata = {
-  title: "Sistemas del Norte - Soluciones Digitales",
+  metadataBase: new URL("https://varelab.com"),
+  title: "VareLab · Sistemas a medida, webs y turnos online en Tucumán",
   description:
-    "Sistemas personalizados, e-commerce y plataformas web que escalan tu negocio. Soluciones digitales para PyMEs y comercios en Argentina.",
-  generator: "v0.app",
-  keywords: "sistemas, desarrollo web, e-commerce, PyMEs, Argentina, software",
-  authors: [{ name: "Sistemas del Norte" }],
+    "Tu negocio, ordenado y a mano. Sistemas a medida, webs y turnos online para dejar el cuaderno y el Excel: ventas, stock, cobranzas y turnos en un solo lugar.",
   openGraph: {
-    title: "Sistemas del Norte - Soluciones Digitales",
-    description: "Sistemas que ordenan y escalan tu negocio",
+    title: "VareLab",
+    description: "Tu negocio, ordenado y a mano.",
     type: "website",
+    locale: "es_AR",
   },
-  icons: {
-    icon: [
-      {
-        url: "/icon.png",
-        type: "image/png",
-        sizes: "128x128",
-      },
-    ],
-  },
+  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#f6f3ec",
+  width: "device-width",
+  initialScale: 1,
+}
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-background text-foreground`}>
-        <ThemeProvider>
-          {children}
-          <Analytics />
-        </ThemeProvider>
+    <html lang="es-AR" className={`${bricolage.variable} ${inter.variable} ${martian.variable}`}>
+      <body>
+        {children}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   )
