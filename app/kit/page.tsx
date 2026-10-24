@@ -26,7 +26,7 @@ export default function Kit() {
         <div className="contenedor relative grid gap-10">
           <Wordmark className="w-[min(22rem,70vw)] text-tinta" />
           <h1 className="max-w-[16ch] text-[length:var(--marca-fs-display)]">
-            Sabé siempre <span className="resaltado">cuánto te deben</span>.
+            Tu negocio, <span className="resaltado">ordenado</span> y a mano.
           </h1>
           <p className="max-w-[60ch] text-[length:var(--marca-fs-lead)] text-texto-2">
             Kit de marca de trabajo. Esta página no se indexa: sirve para revisar tokens, tipografías y recursos gráficos antes de armar la landing.

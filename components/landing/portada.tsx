@@ -3,9 +3,9 @@ import { Sello } from "@/components/ui/grafica"
 import { waLink } from "@/lib/contenido"
 
 const capitulos = [
-  "Hoy, los turnos viven en el chat y en un cuaderno.",
-  "Cada mensaje pasa a ser un turno, con día, hora y seña.",
-  "Al final del día, todo está en un solo lugar.",
+  "Hoy, la información está en cuadernos, planillas y chats.",
+  "Cada venta, cada cobro y cada movimiento de stock queda registrado.",
+  "Y ves tu negocio entero en una sola pantalla.",
 ]
 
 export function Portada() {
@@ -19,9 +19,9 @@ export function Portada() {
             <span className="linea-mascara"><span>y&nbsp;a&nbsp;mano.</span></span>
           </h1>
           <p className="max-w-[46ch] text-[length:var(--marca-fs-lead)] text-texto-2">
-            Webs, turnos online y sistemas a medida para negocios de Tucumán que hoy resuelven todo por WhatsApp.
+            Sistemas a medida, webs y turnos online para dejar el cuaderno y el Excel. Ventas, stock, cobranzas y turnos en un solo lugar, desde la compu o el celular.
           </p>
-          <BotonPildora href={waLink("Hola Tomás, quiero ordenar los turnos y la web de mi negocio.")} target="_blank" rel="noopener noreferrer">
+          <BotonPildora href={waLink("Hola Tomás, quiero ordenar mi negocio con un sistema.")} target="_blank" rel="noopener noreferrer">
             Contame de tu negocio
           </BotonPildora>
           <p className="text-[0.9rem] text-texto-2">Te responde Tomás, la misma persona que lo construye.</p>
@@ -36,7 +36,7 @@ export function Portada() {
                 <source media="(min-width: 600px)" srcSet="/hero/d-000.webp" />
                 <img
                   src="/hero/m-000.webp"
-                  alt="Ilustración: una hoja de cuaderno con turnos anotados a mano y mensajes de clientas que se ordenan en una agenda con horarios y señas pagas."
+                  alt="Ilustración: un cuaderno de ventas, una planilla de stock con errores y mensajes de clientes que se ordenan en un panel con ventas del día, productos con stock bajo y clientes por cobrar."
                   width={960}
                   height={800}
                   fetchPriority="high"
@@ -55,7 +55,7 @@ export function Portada() {
               ))}
             </ol>
             <p id="hero-cap" className="mx-auto w-full max-w-[36rem] text-[0.78rem] text-texto-2">
-              Ilustración propia: turnos, nombres y mensajes de ejemplo.
+              Ilustración propia: productos, cifras, nombres y mensajes de ejemplo.
             </p>
           </div>
         </div>

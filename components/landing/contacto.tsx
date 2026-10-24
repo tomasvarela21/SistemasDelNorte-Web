@@ -5,7 +5,7 @@ import { BotonPildora } from "@/components/ui/boton"
 import { Wordmark } from "@/components/brand/marca"
 import { waLink } from "@/lib/contenido"
 
-const opcionesRubro = ["Estética / belleza", "Peluquería o barbería", "Cafetería / gastronomía", "Consultorio", "Comercio", "Otro"]
+const opcionesRubro = ["Comercio / local", "Distribuidora o mayorista", "Ventas en cuotas", "Servicios con turnos (estética, consultorio, gimnasio)", "Gastronomía", "Otro"]
 
 export function Contacto() {
   const [error, setError] = useState<string | null>(null)
@@ -54,7 +54,7 @@ export function Contacto() {
           </div>
           <div className="grid gap-2">
             <label htmlFor="necesidad" className="font-medium">¿Qué te gustaría ordenar?</label>
-            <textarea id="necesidad" name="necesidad" rows={4} required autoComplete="off" className="campo resize-y" placeholder="Ej.: hoy doy los turnos por WhatsApp y no tengo web…" />
+            <textarea id="necesidad" name="necesidad" rows={4} required autoComplete="off" className="campo resize-y" placeholder="Ej.: llevo el stock en un Excel y las ventas en un cuaderno…" />
           </div>
           {error ? (
             <p id="form-error" role="alert" aria-live="polite" className="text-resaltador">
@@ -78,7 +78,7 @@ export function Pie() {
       <div className="contenedor flex flex-wrap items-end justify-between gap-8">
         <div className="grid gap-3">
           <Wordmark className="h-8 w-auto text-papel" />
-          <p className="text-[0.9rem] text-texto-2">Webs, turnos y sistemas a medida · San Miguel de Tucumán</p>
+          <p className="text-[0.9rem] text-texto-2">Sistemas a medida, webs y turnos · San Miguel de Tucumán</p>
         </div>
         <p className="text-[0.85rem] text-texto-2">© {new Date().getFullYear()} VareLab</p>
       </div>

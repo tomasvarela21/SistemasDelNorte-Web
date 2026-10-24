@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <title>Escena hero · fuente de los frames</title>
 <!-- Fuente de la secuencia del hero. Se renderiza con scripts/escena-hero/render.mjs.
-     Es una ilustración propia: turnos, nombres y mensajes son de ejemplo. -->
+     Ilustración propia: productos, cantidades, nombres y mensajes son de ejemplo. -->
 <style>
   @font-face { font-family: B; src: url(../../app/fonts/bricolage-grotesque-latin-opsz-normal.woff2); font-weight: 200 800; }
   @font-face { font-family: I; src: url(../../app/fonts/inter-latin-wght-normal.woff2); font-weight: 100 900; }
@@ -13,59 +13,74 @@
   * { box-sizing: border-box; margin: 0; }
   html, body { background: var(--papel); }
   #esc { position: relative; width: 960px; height: 800px; overflow: hidden; background: var(--papel); font-family: I; color: var(--tinta); }
-  .blob { position: absolute; left: 120px; top: 70px; width: 640px; height: 640px; border-radius: 46% 54% 52% 48% / 50% 44% 56% 50%; background: var(--ambs); }
-  .hoja { position: absolute; left: 70px; top: 120px; width: 470px; height: 520px; background: #fffdf7; border-radius: 18px;
-    box-shadow: 0 2px 4px rgba(20,24,27,.06), 0 24px 48px -18px rgba(20,24,27,.28); padding: 34px 30px 30px 78px;
-    background-image: repeating-linear-gradient(to bottom, transparent 0 47px, rgba(20,24,27,.09) 47px 48px); background-position: 0 92px; }
-  .hoja::before { content: ""; position: absolute; left: 54px; top: 0; bottom: 0; width: 2px; background: #e4a59a; }
-  .dia { font-family: M; font-stretch: 78%; color: var(--gris); font-size: 20px; height: 58px; }
-  .linea { display: flex; gap: 18px; height: 48px; align-items: center; font-size: 25px; font-style: italic; }
-  .linea .h { font-family: M; font-stretch: 78%; font-style: normal; color: var(--gris); font-size: 21px; width: 74px; }
+  .blob { position: absolute; left: 140px; top: 80px; width: 640px; height: 640px; border-radius: 46% 54% 52% 48% / 50% 44% 56% 50%; background: var(--ambs); }
+  .hoja { position: absolute; left: 50px; top: 150px; width: 430px; height: 470px; background: #fffdf7; border-radius: 18px;
+    box-shadow: 0 2px 4px rgba(20,24,27,.06), 0 24px 48px -18px rgba(20,24,27,.28); padding: 30px 26px 26px 70px;
+    background-image: repeating-linear-gradient(to bottom, transparent 0 45px, rgba(20,24,27,.09) 45px 46px); background-position: 0 84px; }
+  .hoja::before { content: ""; position: absolute; left: 48px; top: 0; bottom: 0; width: 2px; background: #e4a59a; }
+  .tit { font-family: M; font-stretch: 78%; color: var(--gris); font-size: 19px; height: 54px; }
+  .linea { display: flex; gap: 14px; height: 46px; align-items: center; font-size: 23px; font-style: italic; white-space: nowrap; }
   .tach { text-decoration: line-through; text-decoration-thickness: 2px; }
-  .burbuja { position: absolute; right: 60px; background: #fff; border-radius: 22px 22px 22px 6px; padding: 16px 22px; font-size: 23px;
+  .planilla { position: absolute; left: 400px; top: 70px; width: 420px; background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 4px rgba(20,24,27,.06), 0 20px 40px -16px rgba(20,24,27,.28); font-size: 19px; }
+  .planilla .bar { background: var(--papel2); padding: 10px 16px; font-family: M; font-stretch: 78%; font-size: 17px; color: var(--gris); }
+  .planilla table { width: 100%; border-collapse: collapse; }
+  .planilla td { border: 1px solid #e5e1d6; padding: 8px 12px; height: 44px; }
+  .planilla td.n { font-family: M; font-stretch: 78%; text-align: right; width: 90px; }
+  .planilla .rojo { color: #b3261e; }
+  .burbuja { position: absolute; background: #fff; border-radius: 22px 22px 22px 6px; padding: 14px 20px; font-size: 22px;
     box-shadow: 0 2px 4px rgba(20,24,27,.06), 0 14px 30px -12px rgba(20,24,27,.25); white-space: nowrap; }
-  .agenda { position: absolute; left: 330px; top: 150px; width: 570px; background: var(--tinta); color: var(--papel); border-radius: 26px; padding: 30px;
+  .panel { position: absolute; left: 300px; top: 140px; width: 610px; background: var(--tinta); color: var(--papel); border-radius: 26px; padding: 30px;
     box-shadow: 0 2px 4px rgba(20,24,27,.1), 0 34px 70px -24px rgba(20,24,27,.5); }
-  .ag-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
-  .ag-top b { font-family: B; font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
-  .ag-top span { font-family: M; font-stretch: 78%; color: var(--grisc); font-size: 20px; }
-  .slot { display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 16px; height: 86px; border-radius: 16px; padding: 0 18px; margin-bottom: 12px; background: var(--tinta2); }
-  .slot.libre { background: transparent; border: 2px dashed var(--gris); }
-  .slot .h { font-family: M; font-stretch: 78%; color: var(--amb); font-size: 24px; }
-  .slot .s { font-size: 24px; font-weight: 600; white-space: nowrap; }
-  .slot .c { font-size: 18px; color: var(--grisc); margin-top: 2px; }
-  .badge { font-size: 17px; font-weight: 700; background: var(--amb); color: var(--tinta); border-radius: 999px; padding: 6px 14px; }
-  .chip { position: absolute; background: var(--amb); color: var(--tinta); font-weight: 700; font-size: 20px; border-radius: 999px; padding: 6px 14px; white-space: nowrap; }
-  .total { margin-top: 8px; display: flex; justify-content: space-between; font-size: 20px; color: var(--grisc); }
-  .total b { color: var(--papel); font-weight: 600; }
+  .p-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+  .p-top b { font-family: B; font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
+  .p-top span { font-family: M; font-stretch: 78%; color: var(--grisc); font-size: 19px; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+  .kpi { background: var(--tinta2); border-radius: 16px; padding: 16px; }
+  .kpi .v { font-family: M; font-stretch: 78%; font-size: 40px; color: var(--amb); line-height: 1; }
+  .kpi .l { font-size: 17px; color: var(--grisc); margin-top: 8px; }
+  .fila { display: grid; grid-template-columns: 1fr auto; align-items: center; height: 62px; border-radius: 14px; padding: 0 16px; margin-bottom: 10px; background: var(--tinta2); font-size: 21px; }
+  .badge { font-size: 16px; font-weight: 700; background: var(--amb); color: var(--tinta); border-radius: 999px; padding: 5px 12px; }
+  .chip { position: absolute; background: var(--amb); color: var(--tinta); font-weight: 700; font-size: 19px; border-radius: 999px; padding: 6px 14px; white-space: nowrap; }
 </style>
 </head>
 <body>
 <div id="esc">
   <div class="blob"></div>
   <div class="hoja" id="hoja">
-    <p class="dia">martes</p>
-    <p class="linea"><span class="h">10:00</span><span class="tach">Sofi · uñas</span></p>
-    <p class="linea"><span class="h">10:30</span><span>¿Cami? confirmar</span></p>
-    <p class="linea"><span class="h">11:00</span><span>Lu · cejas · seña??</span></p>
-    <p class="linea"><span class="h">12:00</span><span class="tach">Agus — no vino</span></p>
-    <p class="linea"><span class="h">15:00</span><span>Carla limpieza</span></p>
-    <p class="linea"><span class="h"></span><span>llamar a Meli!!</span></p>
+    <p class="tit">ventas · martes</p>
+    <p class="linea">remera M negra x2</p>
+    <p class="linea">jean 42 — Caro (fiado)</p>
+    <p class="linea tach">buzo L x1</p>
+    <p class="linea">Juan me debe 2 cuotas</p>
+    <p class="linea">¿quedan medias?</p>
+    <p class="linea">pedir remeras!!</p>
   </div>
-  <div class="burbuja" id="b0" style="top:70px">¿Tenés turno mañana?</div>
-  <div class="burbuja" id="b1" style="top:160px">¿A qué hora?</div>
-  <div class="burbuja" id="b2" style="top:250px">¿Te paso la seña?</div>
-  <div class="agenda" id="agenda">
-    <div class="ag-top"><b>Martes</b><span id="cuenta">0 turnos</span></div>
-    <div class="slot" id="s0"><span class="h">10:00</span><span><div class="s">Esmaltado semi</div><div class="c">Sofía M.</div></span><span class="badge" id="g0">Seña paga</span></div>
-    <div class="slot" id="s1"><span class="h">11:00</span><span><div class="s">Perfilado de cejas</div><div class="c">Lucía G.</div></span><span class="badge" id="g1">Seña paga</span></div>
-    <div class="slot libre" id="s2"><span class="h">12:30</span><span><div class="s" style="font-weight:500">Libre</div></span><span></span></div>
-    <div class="slot" id="s3"><span class="h">15:00</span><span><div class="s">Limpieza facial</div><div class="c">Carla R.</div></span><span class="badge" id="g3">Recordada</span></div>
-    <div class="total" id="total"><span>Todo en un lugar</span><b>3 confirmados · 1 libre</b></div>
+  <div class="planilla" id="planilla">
+    <div class="bar">stock_final_v3.xlsx</div>
+    <table>
+      <tr><td>Remera básica M</td><td class="n">2</td></tr>
+      <tr><td>Jean recto 42</td><td class="n">5</td></tr>
+      <tr><td>Buzo canguro L</td><td class="n rojo">#REF!</td></tr>
+      <tr><td>Medias x3</td><td class="n">?</td></tr>
+    </table>
   </div>
-  <div class="chip" id="c0">10:00</div>
-  <div class="chip" id="c1">11:00</div>
-  <div class="chip" id="c3">15:00</div>
+  <div class="burbuja" id="b0" style="left:520px; top:430px">¿Tenés el talle M?</div>
+  <div class="burbuja" id="b1" style="left:560px; top:520px">¿Cuánto te debo?</div>
+  <div class="panel" id="panel">
+    <div class="p-top"><b>Martes</b><span>todo al día</span></div>
+    <div class="kpis">
+      <div class="kpi" id="k0"><div class="v" id="v0">0</div><div class="l">ventas de hoy</div></div>
+      <div class="kpi" id="k1"><div class="v" id="v1">0</div><div class="l">con stock bajo</div></div>
+      <div class="kpi" id="k2"><div class="v" id="v2">0</div><div class="l">clientes por cobrar</div></div>
+    </div>
+    <div class="fila" id="f0"><span>Remera básica M · quedan 2</span><span class="badge">Reponer</span></div>
+    <div class="fila" id="f1"><span>Juan P. · 2 cuotas atrasadas</span><span class="badge">Avisar</span></div>
+    <div class="fila" id="f2"><span>Caro L. · cuenta corriente</span><span class="badge">Al día</span></div>
+  </div>
+  <div class="chip" id="c0">venta</div>
+  <div class="chip" id="c1">stock</div>
+  <div class="chip" id="c2">cobro</div>
 </div>
 <script>
   const $ = (id) => document.getElementById(id)
@@ -74,44 +89,43 @@
   const eo = (x) => 1 - Math.pow(1 - x, 3)
   const eio = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2)
   const lerp = (a, b, x) => a + (b - a) * x
-  // origen (en la hoja) y destino (en la agenda) de cada chip
-  const rutas = { c0: [[150, 205], [372, 222]], c1: [[150, 301], [372, 320]], c3: [[150, 397], [372, 516]] }
+  // origen (cuaderno / planilla) y destino (indicadores del panel)
+  const rutas = { c0: [[120, 230], [360, 250]], c1: [[560, 150], [550, 250]], c2: [[120, 370], [740, 250]] }
+  const metas = [14, 3, 5]
   window.render = (t) => {
     // 1 · mensajes que llegan
-    ;["b0", "b1", "b2"].forEach((id, i) => {
-      const a = eo(seg(t, i * 0.06, i * 0.06 + 0.08)), z = seg(t, 0.32, 0.44)
+    ;["b0", "b1"].forEach((id, i) => {
+      const a = eo(seg(t, 0.03 + i * 0.07, 0.11 + i * 0.07)), z = seg(t, 0.32, 0.44)
       $(id).style.opacity = a * (1 - z)
       $(id).style.transform = `translateY(${(1 - a) * 18 - z * 30}px) scale(${0.96 + a * 0.04})`
     })
-    // 2 · la hoja se corre y se apaga
+    // 2 · cuaderno y planilla se corren y se apagan
     const h = eio(seg(t, 0.3, 0.62))
-    $("hoja").style.transform = `translateX(${-h * 60}px) rotate(${-3 - h * 2}deg) scale(${1 - h * 0.06})`
-    $("hoja").style.opacity = 1 - h * 0.7
-    // 3 · la agenda aparece
+    $("hoja").style.transform = `translateX(${-h * 50}px) rotate(${-3 - h * 2}deg) scale(${1 - h * 0.06})`
+    $("hoja").style.opacity = 1 - h * 0.72
+    $("planilla").style.transform = `translate(${h * 40}px, ${-h * 30}px) rotate(${2 + h * 2}deg) scale(${1 - h * 0.08})`
+    $("planilla").style.opacity = 1 - h * 0.8
+    // 3 · el panel aparece
     const a = eo(seg(t, 0.38, 0.6))
-    $("agenda").style.opacity = a
-    $("agenda").style.transform = `translateY(${(1 - a) * 46}px) rotate(${(1 - a) * 3 + 1.2}deg) scale(${0.95 + a * 0.05})`
-    // 4 · los turnos viajan del cuaderno a la agenda
-    const llegadas = { c0: [0.42, 0.64], c1: [0.48, 0.7], c3: [0.54, 0.76] }
-    let llegados = 0
-    for (const id of ["c0", "c1", "c3"]) {
+    $("panel").style.opacity = a
+    $("panel").style.transform = `translateY(${(1 - a) * 46}px) rotate(${(1 - a) * 3 + 1.2}deg) scale(${0.95 + a * 0.05})`
+    // 4 · los datos viajan al panel y los indicadores cuentan
+    const llegadas = { c0: [0.44, 0.66], c1: [0.5, 0.72], c2: [0.56, 0.78] }
+    Object.keys(llegadas).forEach((id, i) => {
       const [a0, a1] = llegadas[id], p = eio(seg(t, a0, a1)), [o, d] = rutas[id]
       const vis = seg(t, a0 - 0.04, a0) * (1 - seg(t, a1 - 0.02, a1 + 0.03))
       $(id).style.opacity = vis
       $(id).style.transform = `translate(${lerp(o[0], d[0], p)}px, ${lerp(o[1], d[1], p) - Math.sin(p * Math.PI) * 60}px)`
-      const slot = $("s" + id.slice(1)), llega = seg(t, a1 - 0.02, a1 + 0.04)
-      slot.style.opacity = 0.35 + llega * 0.65
-      if (llega > 0.5) llegados++
-    }
-    $("s2").style.opacity = 0.35 + seg(t, 0.72, 0.8) * 0.65
-    $("cuenta").textContent = `${llegados} ${llegados === 1 ? "turno" : "turnos"}`
-    // 5 · señas y recordatorio
-    ;["g0", "g1", "g3"].forEach((id, i) => {
-      const b = eo(seg(t, 0.78 + i * 0.05, 0.86 + i * 0.05))
-      $(id).style.opacity = b
-      $(id).style.transform = `scale(${0.9 + b * 0.1})`
+      const k = seg(t, a1 - 0.02, a1 + 0.1)
+      $("k" + i).style.opacity = 0.4 + k * 0.6
+      $("v" + i).textContent = Math.round(metas[i] * eo(k))
     })
-    $("total").style.opacity = seg(t, 0.9, 0.98)
+    // 5 · filas con acciones
+    ;["f0", "f1", "f2"].forEach((id, i) => {
+      const b = eo(seg(t, 0.8 + i * 0.05, 0.88 + i * 0.05))
+      $(id).style.opacity = 0.3 * a + 0.7 * b
+      $(id).style.transform = `translateY(${(1 - b) * 8}px)`
+    })
   }
   window.render(0)
 </script>

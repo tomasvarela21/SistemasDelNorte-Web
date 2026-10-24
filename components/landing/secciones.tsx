@@ -35,9 +35,9 @@ export function DiaDelNegocio() {
         </div>
         <div className="dia-pista contenedor relative grid gap-12">
         <div className="dia-intro grid content-center gap-5">
-          <h2 id="dia-titulo" className="max-w-[18ch] text-[length:var(--marca-fs-h2)]">Un día de tu negocio, sin perseguir mensajes.</h2>
+          <h2 id="dia-titulo" className="max-w-[18ch] text-[length:var(--marca-fs-h2)]">Un día de tu negocio, sin cuadernos ni planillas.</h2>
           <p className="max-w-[44rem] text-[length:var(--marca-fs-lead)] text-texto-2">
-            Así cambia una jornada en una estética cuando los turnos dejan de vivir en el chat.
+            Así cambia una jornada cuando el negocio deja de vivir en cuadernos y planillas.
           </p>
         </div>
         <ol className="dia-lista grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -57,7 +57,7 @@ export function DiaDelNegocio() {
                   <dd className="text-texto-2">{m.antes}</dd>
                 </div>
                 <div>
-                  <dt className="text-[0.8rem] font-semibold uppercase tracking-[0.08em]">Con tu web</dt>
+                  <dt className="text-[0.8rem] font-semibold uppercase tracking-[0.08em]">Con tu sistema</dt>
                   <dd>{m.ahora}</dd>
                 </div>
               </dl>
@@ -71,7 +71,7 @@ export function DiaDelNegocio() {
 }
 
 /* ---------- Statement ---------- */
-const DECLARACION = "Si una herramienta gratuita le alcanza a tu negocio, te lo digo. Lo que armo es para que dejes de depender del WhatsApp, y queda a tu nombre."
+const DECLARACION = "Lo que hoy anotás en tres lugares distintos, mañana lo ves en uno. Y no te adaptás vos al programa: el programa se adapta a tu negocio."
 export function Declaracion() {
   return (
     <section className="declaracion superficie-tinta py-[var(--marca-seccion)]" aria-label="Cómo pienso el trabajo">
@@ -96,7 +96,7 @@ export function Servicios() {
         <div className="grid content-start gap-6 lg:sticky lg:top-28">
           <h2 id="servicios-titulo" className="text-[length:var(--marca-fs-h2)]">Qué hago</h2>
           <p className="max-w-[40ch] text-[length:var(--marca-fs-lead)] text-texto-2">
-            Empiezo por lo que más te ordena el día: que te encuentren y que reserven solos. Después, lo que tu negocio necesite.
+            Empiezo por lo que más te ordena el día: tus ventas, tu stock y lo que te deben. Después, lo que tu negocio necesite.
           </p>
           <BotonPildora variante="resaltador" href="#contacto" className="justify-self-start">
             Pedí una propuesta
