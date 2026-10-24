@@ -28,6 +28,7 @@ export function DiaDelNegocio() {
   return (
     <section id="dia" className="dia py-[var(--marca-seccion)]" aria-labelledby="dia-titulo">
       <div className="dia-escenario relative">
+        <div className="dia-sticky">
         <div className="dia-fondos" aria-hidden="true">
           {fondosDia.map((c, i) => (
             <span key={i} className="dia-fondo" style={{ background: c }} />
@@ -65,6 +66,7 @@ export function DiaDelNegocio() {
           ))}
         </ol>
         </div>
+      </div>
       </div>
     </section>
   )

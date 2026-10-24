@@ -7,7 +7,8 @@ import { useEffect } from "react"
  * - GSAP, ScrollTrigger, SplitText y Lenis se cargan con import() en el primer momento ocioso
  *   o ante el primer gesto. Hasta entonces la página se ve completa con el póster del hero.
  * - Solo se animan transform y opacity. gsap.matchMedia() separa desktop / mobile / reducido.
- * - Con prefers-reduced-motion: sin pin, sin Lenis, sin desplazamientos.
+ * - Las escenas "fijas" usan position: sticky (no pin de GSAP) para no generar saltos de layout.
+ * - Con prefers-reduced-motion: sin escenas fijas, sin Lenis, sin desplazamientos.
  */
 export function Movimiento() {
   useEffect(() => {
@@ -169,7 +170,7 @@ function hero(gsap: G, ScrollTrigger: ST, desktop: boolean): (() => void) | unde
     ease: "none",
     onUpdate: () => dibujar(Math.round(estado.f)),
     scrollTrigger: desktop
-      ? { trigger: sec, start: "top top", end: "+=120%", pin: true, scrub: 0.5, onUpdate: (s) => marcar(s.progress) }
+      ? { trigger: sec, start: "top top", end: "bottom bottom", scrub: 0.5, onUpdate: (s) => marcar(s.progress) }
       : { trigger: sec.querySelector(".hero-pista"), start: "top 72px", end: "bottom bottom", scrub: 0.4, onUpdate: (s) => marcar(s.progress) },
   })
   const onR = () => { ajustar(); dibujar(Math.round(estado.f)) }
@@ -207,16 +208,23 @@ function diaHorizontal(gsap: G): (() => void) | undefined {
   esc.classList.add("dia--horizontal")
   const fondos = gsap.utils.toArray<HTMLElement>(".dia-fondo", esc)
   const distancia = () => Math.max(0, pista.scrollWidth - window.innerWidth)
+  // Sticky en vez de pin: el escenario se alarga lo que dura el recorrido y el contenido
+  // queda pegado arriba con CSS. Mismo efecto visual, sin saltos de layout (CLS).
+  const alto = () => (esc.style.height = `${window.innerHeight + distancia() * 1.1}px`)
+  alto()
   const tl = gsap.timeline({
     defaults: { ease: "none" },
-    scrollTrigger: { trigger: esc, start: "top top", end: () => "+=" + distancia() * 1.1, pin: true, scrub: 0.6, invalidateOnRefresh: true },
+    scrollTrigger: { trigger: esc, start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true, onRefreshInit: alto },
   })
   tl.to(pista, { x: () => -distancia(), duration: 1 }, 0)
   fondos.forEach((f, i) => {
     if (i === 0) return
     tl.to(f, { opacity: 1, duration: 0.18 }, (i / fondos.length) * 0.95)
   })
-  return () => esc.classList.remove("dia--horizontal")
+  return () => {
+    esc.classList.remove("dia--horizontal")
+    esc.style.height = ""
+  }
 }
 
 /* ---------- Statement: palabras que se encienden con scrub (arrancan al 55 %) ---------- */

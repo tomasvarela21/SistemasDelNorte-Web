@@ -246,6 +246,9 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
 @media (min-width: 900px) {
   .portada { min-height: 100svh; }
+  /* Desktop con movimiento: la portada dura 2 pantallas y el escenario queda pegado arriba */
+  .mov .portada { height: 220svh; padding-top: 0; padding-bottom: 0; }
+  .mov .portada-escenario { position: sticky; top: 64px; min-height: calc(100svh - 64px); align-content: center; }
 }
 @media (max-width: 899.98px) {
   .mov .hero-pista { height: 165svh; }
@@ -258,7 +261,8 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
 /* Un día: horizontal en desktop */
 .dia-fondos { display: none; }
-.dia--horizontal { height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.dia--horizontal { overflow: clip; }
+.dia--horizontal .dia-sticky { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; }
 .dia:has(.dia--horizontal) { padding-block: 0; }
 .dia--horizontal .dia-fondos { display: block; position: absolute; inset: 0; }
 .dia--horizontal .dia-fondo { position: absolute; inset: 0; opacity: 0; }
